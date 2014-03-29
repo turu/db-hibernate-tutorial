@@ -32,11 +32,11 @@
                 <prop key="hibernate.cache.region.factory_class">${hibernate.cache.region.factory_class}</prop>
             </props>
         </property>
-        <property name="mappingLocations">
-            <list>
-                <value>classpath:META-INF/properties/hibernate.cfg.xml</value>
-            </list>
-        </property>
+        <!--<property name="mappingLocations">-->
+            <!--<list>-->
+                <!--<value>classpath:META-INF/properties/hibernate.cfg.xml</value>-->
+            <!--</list>-->
+        <!--</property>-->
     </bean>
 
 </beans>

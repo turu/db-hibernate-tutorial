@@ -49,8 +49,8 @@ ALTER TABLE public.categories OWNER TO bazy;
 --
 
 CREATE TABLE customercustomerdemo (
-    "CustomerID" bpchar NOT NULL,
-    "CustomerTypeID" bpchar NOT NULL
+    "CustomerID" character varying NOT NULL,
+    "CustomerTypeID" character varying NOT NULL
 );
 
 
@@ -61,7 +61,7 @@ ALTER TABLE public.customercustomerdemo OWNER TO bazy;
 --
 
 CREATE TABLE customerdemographics (
-    "CustomerTypeID" bpchar NOT NULL,
+    "CustomerTypeID" character varying NOT NULL,
     "CustomerDesc" text
 );
 
@@ -73,7 +73,7 @@ ALTER TABLE public.customerdemographics OWNER TO bazy;
 --
 
 CREATE TABLE customers (
-    "CustomerID" bpchar NOT NULL,
+    "CustomerID" character varying NOT NULL,
     "CompanyName" character varying(40) NOT NULL,
     "ContactName" character varying(30),
     "ContactTitle" character varying(30),
@@ -150,7 +150,7 @@ ALTER TABLE public.order_details OWNER TO bazy;
 
 CREATE TABLE orders (
     "OrderID" smallint NOT NULL,
-    "CustomerID" bpchar,
+    "CustomerID" character varying,
     "EmployeeID" smallint,
     "OrderDate" date,
     "RequiredDate" date,
@@ -194,7 +194,7 @@ ALTER TABLE public.products OWNER TO bazy;
 
 CREATE TABLE region (
     "RegionID" smallint NOT NULL,
-    "RegionDescription" bpchar NOT NULL
+    "RegionDescription" character varying NOT NULL
 );
 
 
@@ -254,7 +254,7 @@ ALTER TABLE public.suppliers OWNER TO bazy;
 
 CREATE TABLE territories (
     "TerritoryID" character varying(20) NOT NULL,
-    "TerritoryDescription" bpchar NOT NULL,
+    "TerritoryDescription" character varying NOT NULL,
     "RegionID" smallint NOT NULL
 );
 
