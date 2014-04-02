@@ -10,16 +10,16 @@ import javax.persistence.Id;
 @javax.persistence.Table(name = "customers", schema = "public", catalog = "northwind")
 @Entity
 public class CustomersEntity {
-    private String customerId;
+    private String customerID;
 
     @javax.persistence.Column(name = "CustomerID", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Id
-    public String getCustomerId() {
-        return customerId;
+    public String getCustomerID() {
+        return customerID;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerID(String customerId) {
+        this.customerID = customerId;
     }
 
     private String companyName;
@@ -155,7 +155,7 @@ public class CustomersEntity {
         if (contactName != null ? !contactName.equals(that.contactName) : that.contactName != null) return false;
         if (contactTitle != null ? !contactTitle.equals(that.contactTitle) : that.contactTitle != null) return false;
         if (country != null ? !country.equals(that.country) : that.country != null) return false;
-        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
+        if (customerID != null ? !customerID.equals(that.customerID) : that.customerID != null) return false;
         if (fax != null ? !fax.equals(that.fax) : that.fax != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
         if (postalCode != null ? !postalCode.equals(that.postalCode) : that.postalCode != null) return false;
@@ -166,7 +166,7 @@ public class CustomersEntity {
 
     @Override
     public int hashCode() {
-        int result = customerId != null ? customerId.hashCode() : 0;
+        int result = customerID != null ? customerID.hashCode() : 0;
         result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
         result = 31 * result + (contactName != null ? contactName.hashCode() : 0);
         result = 31 * result + (contactTitle != null ? contactTitle.hashCode() : 0);
