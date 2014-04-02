@@ -2,6 +2,7 @@ package pl.agh.turek.bazy.hibernate.model;
 
 import javax.persistence.Basic;
 import javax.persistence.Entity;
+import javax.persistence.Id;
 
 /**
  * Author: Piotr Turek
@@ -9,6 +10,7 @@ import javax.persistence.Entity;
 @javax.persistence.Table(name = "usstates", schema = "public", catalog = "northwind")
 @Entity
 public class UsstatesEntity {
+    @Id
     private short stateId;
 
     @javax.persistence.Column(name = "StateID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
