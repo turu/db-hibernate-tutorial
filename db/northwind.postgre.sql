@@ -42,7 +42,7 @@ CREATE TABLE categories (
 );
 
 
-ALTER TABLE public.categories OWNER TO postgres;
+ALTER TABLE public.categories OWNER TO bazy;
 
 --
 -- Name: customercustomerdemo; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -54,7 +54,7 @@ CREATE TABLE customercustomerdemo (
 );
 
 
-ALTER TABLE public.customercustomerdemo OWNER TO postgres;
+ALTER TABLE public.customercustomerdemo OWNER TO bazy;
 
 --
 -- Name: customerdemographics; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -66,7 +66,7 @@ CREATE TABLE customerdemographics (
 );
 
 
-ALTER TABLE public.customerdemographics OWNER TO postgres;
+ALTER TABLE public.customerdemographics OWNER TO bazy;
 
 --
 -- Name: customers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -87,7 +87,7 @@ CREATE TABLE customers (
 );
 
 
-ALTER TABLE public.customers OWNER TO postgres;
+ALTER TABLE public.customers OWNER TO bazy;
 
 --
 -- Name: employees; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -115,7 +115,7 @@ CREATE TABLE employees (
 );
 
 
-ALTER TABLE public.employees OWNER TO postgres;
+ALTER TABLE public.employees OWNER TO bazy;
 
 --
 -- Name: employeeterritories; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -127,7 +127,7 @@ CREATE TABLE employeeterritories (
 );
 
 
-ALTER TABLE public.employeeterritories OWNER TO postgres;
+ALTER TABLE public.employeeterritories OWNER TO bazy;
 
 --
 -- Name: order_details; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -142,7 +142,7 @@ CREATE TABLE order_details (
 );
 
 
-ALTER TABLE public.order_details OWNER TO postgres;
+ALTER TABLE public.order_details OWNER TO bazy;
 
 --
 -- Name: orders; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -166,7 +166,7 @@ CREATE TABLE orders (
 );
 
 
-ALTER TABLE public.orders OWNER TO postgres;
+ALTER TABLE public.orders OWNER TO bazy;
 
 --
 -- Name: products; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -186,7 +186,7 @@ CREATE TABLE products (
 );
 
 
-ALTER TABLE public.products OWNER TO postgres;
+ALTER TABLE public.products OWNER TO bazy;
 
 --
 -- Name: region; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -198,7 +198,7 @@ CREATE TABLE region (
 );
 
 
-ALTER TABLE public.region OWNER TO postgres;
+ALTER TABLE public.region OWNER TO bazy;
 
 --
 -- Name: shippers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -211,7 +211,7 @@ CREATE TABLE shippers (
 );
 
 
-ALTER TABLE public.shippers OWNER TO postgres;
+ALTER TABLE public.shippers OWNER TO bazy;
 
 --
 -- Name: shippers_tmp; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -224,7 +224,7 @@ CREATE TABLE shippers_tmp (
 );
 
 
-ALTER TABLE public.shippers_tmp OWNER TO postgres;
+ALTER TABLE public.shippers_tmp OWNER TO bazy;
 
 --
 -- Name: suppliers; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -246,7 +246,7 @@ CREATE TABLE suppliers (
 );
 
 
-ALTER TABLE public.suppliers OWNER TO postgres;
+ALTER TABLE public.suppliers OWNER TO bazy;
 
 --
 -- Name: territories; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -259,7 +259,7 @@ CREATE TABLE territories (
 );
 
 
-ALTER TABLE public.territories OWNER TO postgres;
+ALTER TABLE public.territories OWNER TO bazy;
 
 --
 -- Name: usstates; Type: TABLE; Schema: public; Owner: postgres; Tablespace: 
@@ -273,7 +273,7 @@ CREATE TABLE usstates (
 );
 
 
-ALTER TABLE public.usstates OWNER TO postgres;
+ALTER TABLE public.usstates OWNER TO bazy;
 
 --
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
