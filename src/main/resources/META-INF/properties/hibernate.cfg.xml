@@ -1,0 +1,341 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="pl.agh.turek.bazy.hibernate.model.CategoriesEntity" table="categories" schema="public"
+           catalog="northwind">
+        <id name="categoryId">
+            <column name="CategoryID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="categoryName">
+            <column name="CategoryName" sql-type="varchar" length="15" not-null="true"/>
+        </property>
+        <property name="description">
+            <column name="Description" sql-type="text" length="2147483647"/>
+        </property>
+        <property name="picture">
+            <column name="Picture" sql-type="bytea" length="2147483647"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntity" table="customercustomerdemo"
+           schema="public" catalog="northwind">
+        <composite-id mapped="true" class="pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntityPK">
+            <key-property name="customerId">
+                <column name="CustomerID" sql-type="bpchar" length="2147483647" not-null="true"/>
+            </key-property>
+            <key-property name="customerTypeId">
+                <column name="CustomerTypeID" sql-type="bpchar" length="2147483647" not-null="true"/>
+            </key-property>
+        </composite-id>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.CustomerdemographicsEntity" table="customerdemographics"
+           schema="public" catalog="northwind">
+        <id name="customerTypeId">
+            <column name="CustomerTypeID" sql-type="bpchar" length="2147483647" not-null="true"/>
+        </id>
+        <property name="customerDesc">
+            <column name="CustomerDesc" sql-type="text" length="2147483647"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.CustomersEntity" table="customers" schema="public"
+           catalog="northwind">
+        <id name="customerId">
+            <column name="CustomerID" sql-type="bpchar" length="2147483647" not-null="true"/>
+        </id>
+        <property name="companyName">
+            <column name="CompanyName" sql-type="varchar" length="40" not-null="true"/>
+        </property>
+        <property name="contactName">
+            <column name="ContactName" sql-type="varchar" length="30"/>
+        </property>
+        <property name="contactTitle">
+            <column name="ContactTitle" sql-type="varchar" length="30"/>
+        </property>
+        <property name="address">
+            <column name="Address" sql-type="varchar" length="60"/>
+        </property>
+        <property name="city">
+            <column name="City" sql-type="varchar" length="15"/>
+        </property>
+        <property name="region">
+            <column name="Region" sql-type="varchar" length="15"/>
+        </property>
+        <property name="postalCode">
+            <column name="PostalCode" sql-type="varchar" length="10"/>
+        </property>
+        <property name="country">
+            <column name="Country" sql-type="varchar" length="15"/>
+        </property>
+        <property name="phone">
+            <column name="Phone" sql-type="varchar" length="24"/>
+        </property>
+        <property name="fax">
+            <column name="Fax" sql-type="varchar" length="24"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.EmployeesEntity" table="employees" schema="public"
+           catalog="northwind">
+        <id name="employeeId">
+            <column name="EmployeeID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="lastName">
+            <column name="LastName" sql-type="varchar" length="20" not-null="true"/>
+        </property>
+        <property name="firstName">
+            <column name="FirstName" sql-type="varchar" length="10" not-null="true"/>
+        </property>
+        <property name="title">
+            <column name="Title" sql-type="varchar" length="30"/>
+        </property>
+        <property name="titleOfCourtesy">
+            <column name="TitleOfCourtesy" sql-type="varchar" length="25"/>
+        </property>
+        <property name="birthDate">
+            <column name="BirthDate" sql-type="date" length="13"/>
+        </property>
+        <property name="hireDate">
+            <column name="HireDate" sql-type="date" length="13"/>
+        </property>
+        <property name="address">
+            <column name="Address" sql-type="varchar" length="60"/>
+        </property>
+        <property name="city">
+            <column name="City" sql-type="varchar" length="15"/>
+        </property>
+        <property name="region">
+            <column name="Region" sql-type="varchar" length="15"/>
+        </property>
+        <property name="postalCode">
+            <column name="PostalCode" sql-type="varchar" length="10"/>
+        </property>
+        <property name="country">
+            <column name="Country" sql-type="varchar" length="15"/>
+        </property>
+        <property name="homePhone">
+            <column name="HomePhone" sql-type="varchar" length="24"/>
+        </property>
+        <property name="extension">
+            <column name="Extension" sql-type="varchar" length="4"/>
+        </property>
+        <property name="photo">
+            <column name="Photo" sql-type="bytea" length="2147483647"/>
+        </property>
+        <property name="notes">
+            <column name="Notes" sql-type="text" length="2147483647"/>
+        </property>
+        <property name="reportsTo">
+            <column name="ReportsTo" sql-type="int2" length="5"/>
+        </property>
+        <property name="photoPath">
+            <column name="PhotoPath" sql-type="varchar"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntity" table="employeeterritories"
+           schema="public" catalog="northwind">
+        <composite-id mapped="true" class="pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntityPK">
+            <key-property name="employeeId">
+                <column name="EmployeeID" sql-type="int2" length="5" not-null="true"/>
+            </key-property>
+            <key-property name="territoryId">
+                <column name="TerritoryID" sql-type="varchar" length="20" not-null="true"/>
+            </key-property>
+        </composite-id>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.OrderDetailsEntity" table="order_details" schema="public"
+           catalog="northwind">
+        <composite-id mapped="true" class="pl.agh.turek.bazy.hibernate.model.OrderDetailsEntityPK">
+            <key-property name="orderId">
+                <column name="OrderID" sql-type="int2" length="5" not-null="true"/>
+            </key-property>
+            <key-property name="productId">
+                <column name="ProductID" sql-type="int2" length="5" not-null="true"/>
+            </key-property>
+        </composite-id>
+        <property name="unitPrice">
+            <column name="UnitPrice" sql-type="float4" length="8" precision="8" not-null="true"/>
+        </property>
+        <property name="quantity">
+            <column name="Quantity" sql-type="int2" length="5" not-null="true"/>
+        </property>
+        <property name="discount">
+            <column name="Discount" sql-type="float4" length="8" precision="8" not-null="true"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.OrdersEntity" table="orders" schema="public" catalog="northwind">
+        <id name="orderId">
+            <column name="OrderID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="customerId">
+            <column name="CustomerID" sql-type="bpchar" length="2147483647"/>
+        </property>
+        <property name="employeeId">
+            <column name="EmployeeID" sql-type="int2" length="5"/>
+        </property>
+        <property name="orderDate">
+            <column name="OrderDate" sql-type="date" length="13"/>
+        </property>
+        <property name="requiredDate">
+            <column name="RequiredDate" sql-type="date" length="13"/>
+        </property>
+        <property name="shippedDate">
+            <column name="ShippedDate" sql-type="date" length="13"/>
+        </property>
+        <property name="shipVia">
+            <column name="ShipVia" sql-type="int2" length="5"/>
+        </property>
+        <property name="freight">
+            <column name="Freight" sql-type="float4" length="8" precision="8"/>
+        </property>
+        <property name="shipName">
+            <column name="ShipName" sql-type="varchar" length="40"/>
+        </property>
+        <property name="shipAddress">
+            <column name="ShipAddress" sql-type="varchar" length="60"/>
+        </property>
+        <property name="shipCity">
+            <column name="ShipCity" sql-type="varchar" length="15"/>
+        </property>
+        <property name="shipRegion">
+            <column name="ShipRegion" sql-type="varchar" length="15"/>
+        </property>
+        <property name="shipPostalCode">
+            <column name="ShipPostalCode" sql-type="varchar" length="10"/>
+        </property>
+        <property name="shipCountry">
+            <column name="ShipCountry" sql-type="varchar" length="15"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.ProductsEntity" table="products" schema="public"
+           catalog="northwind">
+        <id name="productId">
+            <column name="ProductID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="productName">
+            <column name="ProductName" sql-type="varchar" length="40" not-null="true"/>
+        </property>
+        <property name="supplierId">
+            <column name="SupplierID" sql-type="int2" length="5"/>
+        </property>
+        <property name="categoryId">
+            <column name="CategoryID" sql-type="int2" length="5"/>
+        </property>
+        <property name="quantityPerUnit">
+            <column name="QuantityPerUnit" sql-type="varchar" length="20"/>
+        </property>
+        <property name="unitPrice">
+            <column name="UnitPrice" sql-type="float4" length="8" precision="8"/>
+        </property>
+        <property name="unitsInStock">
+            <column name="UnitsInStock" sql-type="int2" length="5"/>
+        </property>
+        <property name="unitsOnOrder">
+            <column name="UnitsOnOrder" sql-type="int2" length="5"/>
+        </property>
+        <property name="reorderLevel">
+            <column name="ReorderLevel" sql-type="int2" length="5"/>
+        </property>
+        <property name="discontinued">
+            <column name="Discontinued" sql-type="int4" length="10" not-null="true"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.RegionEntity" table="region" schema="public" catalog="northwind">
+        <id name="regionId">
+            <column name="RegionID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="regionDescription">
+            <column name="RegionDescription" sql-type="bpchar" length="2147483647" not-null="true"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.ShippersEntity" table="shippers" schema="public"
+           catalog="northwind">
+        <id name="shipperId">
+            <column name="ShipperID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="companyName">
+            <column name="CompanyName" sql-type="varchar" length="40" not-null="true"/>
+        </property>
+        <property name="phone">
+            <column name="Phone" sql-type="varchar" length="24"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.ShippersTmpEntity" table="shippers_tmp" schema="public"
+           catalog="northwind">
+        <id name="shipperId">
+            <column name="ShipperID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="companyName">
+            <column name="CompanyName" sql-type="varchar" length="40" not-null="true"/>
+        </property>
+        <property name="phone">
+            <column name="Phone" sql-type="varchar" length="24"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.SuppliersEntity" table="suppliers" schema="public"
+           catalog="northwind">
+        <id name="supplierId">
+            <column name="SupplierID" sql-type="int2" length="5" not-null="true"/>
+        </id>
+        <property name="companyName">
+            <column name="CompanyName" sql-type="varchar" length="40" not-null="true"/>
+        </property>
+        <property name="contactName">
+            <column name="ContactName" sql-type="varchar" length="30"/>
+        </property>
+        <property name="contactTitle">
+            <column name="ContactTitle" sql-type="varchar" length="30"/>
+        </property>
+        <property name="address">
+            <column name="Address" sql-type="varchar" length="60"/>
+        </property>
+        <property name="city">
+            <column name="City" sql-type="varchar" length="15"/>
+        </property>
+        <property name="region">
+            <column name="Region" sql-type="varchar" length="15"/>
+        </property>
+        <property name="postalCode">
+            <column name="PostalCode" sql-type="varchar" length="10"/>
+        </property>
+        <property name="country">
+            <column name="Country" sql-type="varchar" length="15"/>
+        </property>
+        <property name="phone">
+            <column name="Phone" sql-type="varchar" length="24"/>
+        </property>
+        <property name="fax">
+            <column name="Fax" sql-type="varchar" length="24"/>
+        </property>
+        <property name="homePage">
+            <column name="HomePage" sql-type="text" length="2147483647"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.TerritoriesEntity" table="territories" schema="public"
+           catalog="northwind">
+        <id name="territoryId">
+            <column name="TerritoryID" sql-type="varchar" length="20" not-null="true"/>
+        </id>
+        <property name="territoryDescription">
+            <column name="TerritoryDescription" sql-type="bpchar" length="2147483647" not-null="true"/>
+        </property>
+        <property name="regionId">
+            <column name="RegionID" sql-type="int2" length="5" not-null="true"/>
+        </property>
+    </class>
+    <class name="pl.agh.turek.bazy.hibernate.model.UsstatesEntity" table="usstates" schema="public"
+           catalog="northwind">
+        <property name="stateId">
+            <column name="StateID" sql-type="int2" length="5" not-null="true"/>
+        </property>
+        <property name="stateName">
+            <column name="StateName" sql-type="varchar" length="100"/>
+        </property>
+        <property name="stateAbbr">
+            <column name="StateAbbr" sql-type="varchar" length="2"/>
+        </property>
+        <property name="stateRegion">
+            <column name="StateRegion" sql-type="varchar" length="50"/>
+        </property>
+    </class>
+</hibernate-mapping>
