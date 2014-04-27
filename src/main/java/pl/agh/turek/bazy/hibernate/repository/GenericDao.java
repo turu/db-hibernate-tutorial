@@ -1,19 +1,21 @@
 package pl.agh.turek.bazy.hibernate.repository;
 
 import org.hibernate.Hibernate;
+import org.hibernate.HibernateException;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.proxy.HibernateProxy;
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
 import java.io.Serializable;
 import java.util.List;
 
-public class GenericDao<T, PK extends Serializable> extends HibernateDaoSupport implements Dao<T, PK> {
+public class GenericDao<T, PK extends Serializable> implements Dao<T, PK> {
 
     private Class<T> type;
+    private SessionFactory sessionFactory;
 
     public GenericDao(SessionFactory sessionFactory, Class<T> type) {
-        super.setSessionFactory(sessionFactory);
+        this.sessionFactory = sessionFactory;
         this.type = type;
     }
 
@@ -43,4 +45,11 @@ public class GenericDao<T, PK extends Serializable> extends HibernateDaoSupport 
         getSession().delete(o);
     }
 
+    public Session getSession() {
+        try {
+            return sessionFactory.getCurrentSession();
+        }catch (HibernateException e){
+            return sessionFactory.openSession();
+        }
+    }
 }

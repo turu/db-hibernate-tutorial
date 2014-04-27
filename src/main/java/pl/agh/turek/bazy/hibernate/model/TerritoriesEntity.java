@@ -14,7 +14,7 @@ public class TerritoriesEntity {
     private String territoryId;
 
     @Id
-    @Column(name = "TerritoryID", nullable = false, length = 20)
+    @Column(name = "`TerritoryID`", nullable = false, length = 20)
     public String getTerritoryId() {
         return territoryId;
     }
@@ -25,7 +25,7 @@ public class TerritoriesEntity {
 
     private String territoryDescription;
 
-    @Column(name = "TerritoryDescription", nullable = false)
+    @Column(name = "`TerritoryDescription`", nullable = false)
     public String getTerritoryDescription() {
         return territoryDescription;
     }
@@ -36,7 +36,7 @@ public class TerritoriesEntity {
 
     private short regionId;
 
-    @Column(name = "RegionID")
+    @Column(name = "`RegionID`")
     public short getRegionId() {
         return regionId;
     }
