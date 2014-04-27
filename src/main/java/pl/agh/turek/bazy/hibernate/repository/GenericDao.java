@@ -4,13 +4,10 @@ import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.proxy.HibernateProxy;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
-import org.springframework.transaction.annotation.Propagation;
-import org.springframework.transaction.annotation.Transactional;
 
 import java.io.Serializable;
 import java.util.List;
 
-@Transactional(propagation = Propagation.MANDATORY)
 public class GenericDao<T, PK extends Serializable> extends HibernateDaoSupport implements Dao<T, PK> {
 
     private Class<T> type;
@@ -24,7 +21,6 @@ public class GenericDao<T, PK extends Serializable> extends HibernateDaoSupport 
         return (PK) getSession().save(o);
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public T get(PK id) {
         T value = (T) getSession().get(type, id);
         if (value != null && value instanceof HibernateProxy) {
@@ -34,7 +30,6 @@ public class GenericDao<T, PK extends Serializable> extends HibernateDaoSupport 
         return value;
     }
 
-    @Transactional(propagation = Propagation.REQUIRED, readOnly = true)
     public List<T> getAll() {
         return getSession().createCriteria(type).list();
     }
