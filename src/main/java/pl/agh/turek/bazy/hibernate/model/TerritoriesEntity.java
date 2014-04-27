@@ -1,17 +1,20 @@
 package pl.agh.turek.bazy.hibernate.model;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "territories", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "territories")
 public class TerritoriesEntity {
     private String territoryId;
 
-    @javax.persistence.Column(name = "TerritoryID", nullable = false, insertable = true, updatable = true, length = 20, precision = 0)
-    @javax.persistence.Id
+    @Id
+    @Column(name = "TerritoryID", nullable = false, length = 20)
     public String getTerritoryId() {
         return territoryId;
     }
@@ -22,8 +25,7 @@ public class TerritoriesEntity {
 
     private String territoryDescription;
 
-    @javax.persistence.Column(name = "TerritoryDescription", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @javax.persistence.Basic
+    @Column(name = "TerritoryDescription", nullable = false)
     public String getTerritoryDescription() {
         return territoryDescription;
     }
@@ -34,8 +36,7 @@ public class TerritoriesEntity {
 
     private short regionId;
 
-    @javax.persistence.Column(name = "RegionID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
-    @javax.persistence.Basic
+    @Column(name = "RegionID")
     public short getRegionId() {
         return regionId;
     }
