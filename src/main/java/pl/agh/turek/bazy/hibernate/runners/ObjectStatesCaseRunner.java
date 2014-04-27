@@ -10,7 +10,7 @@ import pl.agh.turek.bazy.hibernate.repository.TerritoriesDao;
 
 public class ObjectStatesCaseRunner {
     @Autowired
-    private static TerritoriesDao dao;
+    private TerritoriesDao dao;
 
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SpringConfigRunner.class);
 
@@ -23,10 +23,16 @@ public class ObjectStatesCaseRunner {
         SessionFactory sessionFactory = (SessionFactory) ctx.getBean("sessionFactory");
         Session session = sessionFactory.openSession();
 
+        /**
+         * creating new object produces a transient object
+         */
         TerritoriesEntity transientObject = new TerritoriesEntity();
         transientObject.setTerritoryId("Transient");
         transientObject.setTerritoryDescription("This is transient");
 
+        /**
+         * we wont receive any result - transient object is not persisted
+         */
         TerritoriesEntity foundEntity = dao.get("Transient");
         System.out.println(foundEntity);
 
