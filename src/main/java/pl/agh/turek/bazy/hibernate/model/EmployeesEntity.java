@@ -250,10 +250,8 @@ public class EmployeesEntity {
         if (region != null ? !region.equals(that.region) : that.region != null) return false;
         if (reportsTo != null ? !reportsTo.equals(that.reportsTo) : that.reportsTo != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        if (titleOfCourtesy != null ? !titleOfCourtesy.equals(that.titleOfCourtesy) : that.titleOfCourtesy != null)
-            return false;
+        return !(titleOfCourtesy != null ? !titleOfCourtesy.equals(that.titleOfCourtesy) : that.titleOfCourtesy != null);
 
-        return true;
     }
 
     @Override
