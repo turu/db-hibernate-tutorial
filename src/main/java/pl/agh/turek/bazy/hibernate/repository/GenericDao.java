@@ -20,7 +20,10 @@ public class GenericDao<T, PK extends Serializable> implements Dao<T, PK> {
     }
 
     public PK create(T o) {
-        return (PK) getSession().save(o);
+        Session session = getSession();
+        Serializable pk = session.save(o);
+        session.flush();
+        return (PK) pk;
     }
 
     public T get(PK id) {
@@ -38,11 +41,15 @@ public class GenericDao<T, PK extends Serializable> implements Dao<T, PK> {
 
 
     public void update(T o) {
-        getSession().update(o);
+        Session session = getSession();
+        session.update(o);
+        session.flush();
     }
 
     public void delete(T o) {
-        getSession().delete(o);
+        Session session = getSession();
+        session.delete(o);
+        session.flush();
     }
 
     public Session getSession() {

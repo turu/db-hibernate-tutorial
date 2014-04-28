@@ -35,6 +35,26 @@ public class ObjectStatesCaseRunner {
         System.out.println(foundEntity);
 
 
+        /**
+         * What happens on subsequent runner execution?
+         * Why you need: territoriesDao.delete(transientObject);
+         * Hint: better practise is to use session.saveOrUpdate()
+         */
+        String pk = territoriesDao.create(transientObject);
+        TerritoriesEntity persistentEntity = territoriesDao.get(pk);
+        System.out.println(persistentEntity.getTerritoryDescription());
+
+
+        /**
+         * After session is closed object is in detached state -
+         * any changes won't be persisted but object is still valid
+         * Warning: if you use dao methods you will open another session so
+         *      that way you would persist changes
+         */
+        session.close();
+        TerritoriesEntity detachedEntity = persistentEntity;
+        persistentEntity.setTerritoryDescription("This is detached");
+        System.out.println(detachedEntity.getTerritoryDescription());
     }
 
 
