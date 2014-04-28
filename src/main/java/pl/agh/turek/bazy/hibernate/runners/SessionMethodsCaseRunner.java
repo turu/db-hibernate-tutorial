@@ -27,19 +27,20 @@ public class SessionMethodsCaseRunner {
 
         session.save(exampleEntity);
         session.flush();
-        TerritoriesEntity foundEntity = territoriesDao.get("Example");
+        TerritoriesEntity foundEntity = (TerritoriesEntity) session.get(
+                TerritoriesEntity.class, "Example");
         System.out.println(foundEntity.getTerritoryDescription());
 
         exampleEntity.setTerritoryDescription("This is still Example");
 
         session.update(exampleEntity);
         session.flush();
-        foundEntity = territoriesDao.get("Example");
+        foundEntity = (TerritoriesEntity) session.get(TerritoriesEntity.class, "Example");
         System.out.println(foundEntity.getTerritoryDescription());
 
         session.delete(exampleEntity);
         session.flush();
-        foundEntity = territoriesDao.get("Example");
+        foundEntity = (TerritoriesEntity) session.get(TerritoriesEntity.class, "Example");
         System.out.println(foundEntity);
 
         session.close();
