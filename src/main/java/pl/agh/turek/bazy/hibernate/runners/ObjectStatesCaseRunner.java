@@ -17,33 +17,40 @@ public class ObjectStatesCaseRunner {
     private void run() {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
         SessionFactory sessionFactory = (SessionFactory) ctx.getBean("sessionFactory");
-        TerritoriesDao territoriesDao = (TerritoriesDao) ctx.getBean("territoriesDao");
 
         Session session = sessionFactory.openSession();
 
         /**
-         * creating new object produces a transient object
+         * Creating new object produces a transient object
          */
         TerritoriesEntity transientObject = new TerritoriesEntity();
         transientObject.setTerritoryId("Transient");
         transientObject.setTerritoryDescription("This is transient");
 
         /**
-         * we wont receive any result - transient object is not persisted
+         * We wont receive any result - transient object is not persisted
+         * Basically it is plain java object with no associated db record
          */
-        TerritoriesEntity foundEntity = territoriesDao.get("Transient");
+        TerritoriesEntity foundEntity =  (TerritoriesEntity) session.get(
+                TerritoriesEntity.class,"Transient");
         System.out.println(foundEntity);
 
-
+        /**
+         * After object is saved it has persistent state
+         * Persistent object has associated db record
+         * Warning: it doesn't mean that record and object are always equal
+         *      - you still need to session.update() when changes made
+         */
+        session.save(transientObject);
+        session.flush();
+        TerritoriesEntity persistentEntity =  (TerritoriesEntity) session.get(
+                TerritoriesEntity.class,"Transient");
+        System.out.println(persistentEntity.getTerritoryDescription());
         /**
          * What happens on subsequent runner execution?
-         * Why you need: territoriesDao.delete(transientObject);
+         * Why you need: session.delete(transientObject);session.flush();
          * Hint: better practise is to use session.saveOrUpdate()
          */
-        String pk = territoriesDao.create(transientObject);
-        TerritoriesEntity persistentEntity = territoriesDao.get(pk);
-        System.out.println(persistentEntity.getTerritoryDescription());
-
 
         /**
          * After session is closed object is in detached state -

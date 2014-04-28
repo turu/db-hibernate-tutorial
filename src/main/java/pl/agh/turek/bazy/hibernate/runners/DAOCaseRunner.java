@@ -13,9 +13,9 @@ public class DAOCaseRunner {
     }
 
     private void run() {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext(
+                "META-INF/applicationContext.xml");
         TerritoriesDao territoriesDao = (TerritoriesDao) ctx.getBean("territoriesDao");
-
 
         TerritoriesEntity exampleEntity = new TerritoriesEntity();
         exampleEntity.setTerritoryId("Example");

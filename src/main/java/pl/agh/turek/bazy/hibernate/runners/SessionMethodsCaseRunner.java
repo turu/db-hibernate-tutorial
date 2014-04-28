@@ -17,7 +17,6 @@ public class SessionMethodsCaseRunner {
     private void run() {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
         SessionFactory sessionFactory = (SessionFactory) ctx.getBean("sessionFactory");
-        TerritoriesDao territoriesDao = (TerritoriesDao) ctx.getBean("territoriesDao");
 
         Session session = sessionFactory.openSession();
 
