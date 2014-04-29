@@ -1,5 +1,7 @@
 package pl.agh.turek.bazy.hibernate.model;
 
+import org.hibernate.annotations.Fetch;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -77,6 +79,7 @@ public class TerritoriesEntity {
         this.employeeterritoriesesByTerritoryid = employeeterritoriesesByTerritoryid;
     }
 
+    //@ManyToOne(fetch = FetchType.LAZY)
     @ManyToOne
     @JoinColumn(name = "regionid", referencedColumnName = "regionid")
     public RegionEntity getRegionByRegionid() {
