@@ -40,7 +40,7 @@ public class OrdersEntity {
     }
 
     @Basic
-    @Column(name = "customerid", nullable = true, insertable = true, updatable = true, length = 5)
+    @Column(name = "customerid", nullable = true, insertable = false, updatable = false, length = 5)
     public String getCustomerid() {
         return customerid;
     }
@@ -50,7 +50,7 @@ public class OrdersEntity {
     }
 
     @Basic
-    @Column(name = "employeeid", nullable = true, insertable = true, updatable = true)
+    @Column(name = "employeeid", nullable = true, insertable = false, updatable = false)
     public Long getEmployeeid() {
         return employeeid;
     }
@@ -90,7 +90,7 @@ public class OrdersEntity {
     }
 
     @Basic
-    @Column(name = "shipvia", nullable = true, insertable = true, updatable = true)
+    @Column(name = "shipvia", nullable = true, insertable = false, updatable = false)
     public Long getShipvia() {
         return shipvia;
     }

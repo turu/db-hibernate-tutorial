@@ -15,7 +15,7 @@ public class CustomercustomerdemoEntity {
     private CustomersEntity customersByCustomerid;
 
     @Id
-    @Column(name = "customerid", nullable = false, insertable = true, updatable = true, length = 5)
+    @Column(name = "customerid", nullable = false, insertable = false, updatable = false, length = 5)
     public String getCustomerid() {
         return customerid;
     }
@@ -25,7 +25,7 @@ public class CustomercustomerdemoEntity {
     }
 
     @Id
-    @Column(name = "customertypeid", nullable = false, insertable = true, updatable = true, length = 10)
+    @Column(name = "customertypeid", nullable = false, insertable = false, updatable = false, length = 10)
     public String getCustomertypeid() {
         return customertypeid;
     }

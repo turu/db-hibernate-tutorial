@@ -11,7 +11,7 @@ public class EmployeeterritoriesEntityPK implements Serializable {
     private long employeeid;
     private String territoryid;
 
-    @Column(name = "employeeid", nullable = false, insertable = true, updatable = true)
+    @Column(name = "employeeid", nullable = false, insertable = false, updatable = false)
     @Id
     public long getEmployeeid() {
         return employeeid;
@@ -21,7 +21,7 @@ public class EmployeeterritoriesEntityPK implements Serializable {
         this.employeeid = employeeid;
     }
 
-    @Column(name = "territoryid", nullable = false, insertable = true, updatable = true, length = 20)
+    @Column(name = "territoryid", nullable = false, insertable = false, updatable = false, length = 20)
     @Id
     public String getTerritoryid() {
         return territoryid;

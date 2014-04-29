@@ -11,7 +11,7 @@ public class CustomercustomerdemoEntityPK implements Serializable {
     private String customerid;
     private String customertypeid;
 
-    @Column(name = "customerid", nullable = false, insertable = true, updatable = true, length = 5)
+    @Column(name = "customerid", nullable = false, insertable = false, updatable = false, length = 5)
     @Id
     public String getCustomerid() {
         return customerid;
@@ -21,7 +21,7 @@ public class CustomercustomerdemoEntityPK implements Serializable {
         this.customerid = customerid;
     }
 
-    @Column(name = "customertypeid", nullable = false, insertable = true, updatable = true, length = 10)
+    @Column(name = "customertypeid", nullable = false, insertable = false, updatable = false, length = 10)
     @Id
     public String getCustomertypeid() {
         return customertypeid;

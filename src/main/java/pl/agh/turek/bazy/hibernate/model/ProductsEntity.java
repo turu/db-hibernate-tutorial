@@ -44,7 +44,7 @@ public class ProductsEntity {
     }
 
     @Basic
-    @Column(name = "supplierid", nullable = true, insertable = true, updatable = true)
+    @Column(name = "supplierid", nullable = true, insertable = false, updatable = false)
     public Long getSupplierid() {
         return supplierid;
     }
@@ -54,7 +54,7 @@ public class ProductsEntity {
     }
 
     @Basic
-    @Column(name = "categoryid", nullable = true, insertable = true, updatable = true)
+    @Column(name = "categoryid", nullable = true, insertable = false, updatable = false)
     public Long getCategoryid() {
         return categoryid;
     }

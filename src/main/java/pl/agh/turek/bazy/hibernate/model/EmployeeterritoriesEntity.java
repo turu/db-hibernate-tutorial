@@ -15,7 +15,7 @@ public class EmployeeterritoriesEntity {
     private TerritoriesEntity territoriesByTerritoryid;
 
     @Id
-    @Column(name = "employeeid", nullable = false, insertable = true, updatable = true)
+    @Column(name = "employeeid", nullable = false, insertable = false, updatable = false)
     public long getEmployeeid() {
         return employeeid;
     }
@@ -25,7 +25,7 @@ public class EmployeeterritoriesEntity {
     }
 
     @Id
-    @Column(name = "territoryid", nullable = false, insertable = true, updatable = true, length = 20)
+    @Column(name = "territoryid", nullable = false, insertable = false, updatable = false, length = 20)
     public String getTerritoryid() {
         return territoryid;
     }

@@ -36,7 +36,7 @@ public class TerritoriesEntity {
     }
 
     @Basic
-    @Column(name = "regionid", nullable = false, insertable = true, updatable = true)
+    @Column(name = "regionid", nullable = false, insertable = false, updatable = false)
     public long getRegionid() {
         return regionid;
     }
@@ -78,7 +78,7 @@ public class TerritoriesEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "regionid", referencedColumnName = "regionid", nullable = false)
+    @JoinColumn(name = "regionid", referencedColumnName = "regionid")
     public RegionEntity getRegionByRegionid() {
         return regionByRegionid;
     }

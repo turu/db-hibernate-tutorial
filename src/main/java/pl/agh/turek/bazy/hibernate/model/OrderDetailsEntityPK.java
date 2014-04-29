@@ -11,7 +11,7 @@ public class OrderDetailsEntityPK implements Serializable {
     private long orderid;
     private long productid;
 
-    @Column(name = "orderid", nullable = false, insertable = true, updatable = true)
+    @Column(name = "orderid", nullable = false, insertable = false, updatable = false)
     @Id
     public long getOrderid() {
         return orderid;
@@ -21,7 +21,7 @@ public class OrderDetailsEntityPK implements Serializable {
         this.orderid = orderid;
     }
 
-    @Column(name = "productid", nullable = false, insertable = true, updatable = true)
+    @Column(name = "productid", nullable = false, insertable = false, updatable = false)
     @Id
     public long getProductid() {
         return productid;

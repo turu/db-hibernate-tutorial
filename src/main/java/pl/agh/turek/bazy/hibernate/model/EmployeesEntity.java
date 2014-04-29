@@ -195,7 +195,7 @@ public class EmployeesEntity {
     }
 
     @Basic
-    @Column(name = "reportsto", nullable = true, insertable = true, updatable = true)
+    @Column(name = "reportsto", nullable = true, insertable = false, updatable = false)
     public Long getReportsto() {
         return reportsto;
     }

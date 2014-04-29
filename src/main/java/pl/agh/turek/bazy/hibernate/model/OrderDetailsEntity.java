@@ -18,7 +18,7 @@ public class OrderDetailsEntity {
     private ProductsEntity productsByProductid;
 
     @Id
-    @Column(name = "orderid", nullable = false, insertable = true, updatable = true)
+    @Column(name = "orderid", nullable = false, insertable = false, updatable = false)
     public long getOrderid() {
         return orderid;
     }
@@ -28,7 +28,7 @@ public class OrderDetailsEntity {
     }
 
     @Id
-    @Column(name = "productid", nullable = false, insertable = true, updatable = true)
+    @Column(name = "productid", nullable = false, insertable = false, updatable = false)
     public long getProductid() {
         return productid;
     }
