@@ -8,25 +8,27 @@ import java.io.Serializable;
  * Author: Piotr Turek
  */
 public class CustomercustomerdemoEntityPK implements Serializable {
-    private String customerId;
-    private String customerTypeId;
+    private String customerid;
+    private String customertypeid;
 
-@Id@Column(name = "CustomerID", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
-public String getCustomerId() {
-    return customerId;
-}
-
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    @Column(name = "customerid", nullable = false, insertable = true, updatable = true, length = 5)
+    @Id
+    public String getCustomerid() {
+        return customerid;
     }
 
-    @Id@Column(name = "CustomerTypeID", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    public String getCustomerTypeId() {
-        return customerTypeId;
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
     }
 
-    public void setCustomerTypeId(String customerTypeId) {
-        this.customerTypeId = customerTypeId;
+    @Column(name = "customertypeid", nullable = false, insertable = true, updatable = true, length = 10)
+    @Id
+    public String getCustomertypeid() {
+        return customertypeid;
+    }
+
+    public void setCustomertypeid(String customertypeid) {
+        this.customertypeid = customertypeid;
     }
 
     @Override
@@ -36,8 +38,8 @@ public String getCustomerId() {
 
         CustomercustomerdemoEntityPK that = (CustomercustomerdemoEntityPK) o;
 
-        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
-        if (customerTypeId != null ? !customerTypeId.equals(that.customerTypeId) : that.customerTypeId != null)
+        if (customerid != null ? !customerid.equals(that.customerid) : that.customerid != null) return false;
+        if (customertypeid != null ? !customertypeid.equals(that.customertypeid) : that.customertypeid != null)
             return false;
 
         return true;
@@ -45,7 +47,8 @@ public String getCustomerId() {
 
     @Override
     public int hashCode() {
-        int result = customerId != null ? customerId.hashCode() : 0;
-        result = 31 * result + (customerTypeId != null ? customerTypeId.hashCode() : 0);
+        int result = customerid != null ? customerid.hashCode() : 0;
+        result = 31 * result + (customertypeid != null ? customertypeid.hashCode() : 0);
         return result;
-}}
+    }
+}

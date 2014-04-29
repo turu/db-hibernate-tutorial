@@ -1,0 +1,415 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://java.sun.com/xml/ns/persistence/orm"
+        version="2.0">
+
+    <entity class="pl.agh.turek.bazy.hibernate.model.CategoriesEntity">
+        <table name="categories" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="categoryid">
+                <column name="categoryid" nullable="false" precision="19"/>
+            </id>
+            <basic name="categoryname">
+                <column name="categoryname" nullable="false" length="15"/>
+            </basic>
+            <basic name="description">
+                <column name="description" length="10000"/>
+            </basic>
+            <basic name="picture">
+                <column name="picture" precision="2147483647"/>
+            </basic>
+            <one-to-many name="productsesByCategoryid" mapped-by="categoriesByCategoryid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.ProductsEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntity">
+        <table name="customercustomerdemo" schema="public" catalog="northwind"/>
+        <id-class class="pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntityPK"/>
+        <attributes>
+            <id name="customerid">
+                <column name="customerid" nullable="false" length="5"/>
+            </id>
+            <id name="customertypeid">
+                <column name="customertypeid" nullable="false" length="10"/>
+            </id>
+            <many-to-one name="customerdemographicsByCustomertypeid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.CustomerdemographicsEntity">
+                <join-column name="customertypeid" nullable="false" referenced-column-name="customertypeid"/>
+            </many-to-one>
+            <many-to-one name="customersByCustomerid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.CustomersEntity">
+                <join-column name="customerid" nullable="false" referenced-column-name="customerid"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.CustomerdemographicsEntity">
+        <table name="customerdemographics" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="customertypeid">
+                <column name="customertypeid" nullable="false" length="10"/>
+            </id>
+            <basic name="customerdesc">
+                <column name="customerdesc" length="10000"/>
+            </basic>
+            <one-to-many name="customercustomerdemosByCustomertypeid" mapped-by="customerdemographicsByCustomertypeid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.CustomersEntity">
+        <table name="customers" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="customerid">
+                <column name="customerid" nullable="false" length="5"/>
+            </id>
+            <basic name="companyname">
+                <column name="companyname" nullable="false" length="40"/>
+            </basic>
+            <basic name="contactname">
+                <column name="contactname" length="30"/>
+            </basic>
+            <basic name="contacttitle">
+                <column name="contacttitle" length="30"/>
+            </basic>
+            <basic name="address">
+                <column name="address" length="60"/>
+            </basic>
+            <basic name="city">
+                <column name="city" length="15"/>
+            </basic>
+            <basic name="region">
+                <column name="region" length="15"/>
+            </basic>
+            <basic name="postalcode">
+                <column name="postalcode" length="10"/>
+            </basic>
+            <basic name="country">
+                <column name="country" length="15"/>
+            </basic>
+            <basic name="phone">
+                <column name="phone" length="24"/>
+            </basic>
+            <basic name="fax">
+                <column name="fax" length="24"/>
+            </basic>
+            <one-to-many name="customercustomerdemosByCustomerid" mapped-by="customersByCustomerid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntity"/>
+            <one-to-many name="ordersesByCustomerid" mapped-by="customersByCustomerid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.OrdersEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.EmployeesEntity">
+        <table name="employees" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="employeeid">
+                <column name="employeeid" nullable="false" precision="19"/>
+            </id>
+            <basic name="lastname">
+                <column name="lastname" nullable="false" length="20"/>
+            </basic>
+            <basic name="firstname">
+                <column name="firstname" nullable="false" length="10"/>
+            </basic>
+            <basic name="title">
+                <column name="title" length="30"/>
+            </basic>
+            <basic name="titleofcourtesy">
+                <column name="titleofcourtesy" length="25"/>
+            </basic>
+            <basic name="birthdate">
+                <column name="birthdate" precision="13"/>
+            </basic>
+            <basic name="hiredate">
+                <column name="hiredate" precision="13"/>
+            </basic>
+            <basic name="address">
+                <column name="address" length="60"/>
+            </basic>
+            <basic name="city">
+                <column name="city" length="15"/>
+            </basic>
+            <basic name="region">
+                <column name="region" length="15"/>
+            </basic>
+            <basic name="postalcode">
+                <column name="postalcode" length="10"/>
+            </basic>
+            <basic name="country">
+                <column name="country" length="15"/>
+            </basic>
+            <basic name="homephone">
+                <column name="homephone" length="24"/>
+            </basic>
+            <basic name="extension">
+                <column name="extension" length="4"/>
+            </basic>
+            <basic name="photo">
+                <column name="photo" precision="2147483647"/>
+            </basic>
+            <basic name="notes">
+                <column name="notes" length="10000"/>
+            </basic>
+            <basic name="reportsto">
+                <column name="reportsto" precision="19"/>
+            </basic>
+            <basic name="photopath">
+                <column name="photopath"/>
+            </basic>
+            <many-to-one name="employeesByReportsto" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.EmployeesEntity">
+                <join-column name="reportsto" referenced-column-name="employeeid"/>
+            </many-to-one>
+            <one-to-many name="employeesesByEmployeeid" mapped-by="employeesByReportsto"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.EmployeesEntity"/>
+            <one-to-many name="employeeterritoriesesByEmployeeid" mapped-by="employeesByEmployeeid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntity"/>
+            <one-to-many name="ordersesByEmployeeid" mapped-by="employeesByEmployeeid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.OrdersEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntity">
+        <table name="employeeterritories" schema="public" catalog="northwind"/>
+        <id-class class="pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntityPK"/>
+        <attributes>
+            <id name="employeeid">
+                <column name="employeeid" nullable="false" precision="19"/>
+            </id>
+            <id name="territoryid">
+                <column name="territoryid" nullable="false" length="20"/>
+            </id>
+            <many-to-one name="employeesByEmployeeid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.EmployeesEntity">
+                <join-column name="employeeid" nullable="false" referenced-column-name="employeeid"/>
+            </many-to-one>
+            <many-to-one name="territoriesByTerritoryid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.TerritoriesEntity">
+                <join-column name="territoryid" nullable="false" referenced-column-name="territoryid"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.OrderDetailsEntity">
+        <table name="order_details" schema="public" catalog="northwind"/>
+        <id-class class="pl.agh.turek.bazy.hibernate.model.OrderDetailsEntityPK"/>
+        <attributes>
+            <id name="orderid">
+                <column name="orderid" nullable="false" precision="19"/>
+            </id>
+            <id name="productid">
+                <column name="productid" nullable="false" precision="19"/>
+            </id>
+            <basic name="unitprice">
+                <column name="unitprice" nullable="false" precision="17"/>
+            </basic>
+            <basic name="quantity">
+                <column name="quantity" nullable="false" precision="10"/>
+            </basic>
+            <basic name="discount">
+                <column name="discount" nullable="false" precision="17"/>
+            </basic>
+            <many-to-one name="ordersByOrderid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.OrdersEntity">
+                <join-column name="orderid" nullable="false" referenced-column-name="orderid"/>
+            </many-to-one>
+            <many-to-one name="productsByProductid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.ProductsEntity">
+                <join-column name="productid" nullable="false" referenced-column-name="productid"/>
+            </many-to-one>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.OrdersEntity">
+        <table name="orders" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="orderid">
+                <column name="orderid" nullable="false" precision="19"/>
+            </id>
+            <basic name="customerid">
+                <column name="customerid" length="5"/>
+            </basic>
+            <basic name="employeeid">
+                <column name="employeeid" precision="19"/>
+            </basic>
+            <basic name="orderdate">
+                <column name="orderdate" precision="13"/>
+            </basic>
+            <basic name="requireddate">
+                <column name="requireddate" precision="13"/>
+            </basic>
+            <basic name="shippeddate">
+                <column name="shippeddate" precision="13"/>
+            </basic>
+            <basic name="shipvia">
+                <column name="shipvia" precision="19"/>
+            </basic>
+            <basic name="freight">
+                <column name="freight" precision="17"/>
+            </basic>
+            <basic name="shipname">
+                <column name="shipname" length="40"/>
+            </basic>
+            <basic name="shipaddress">
+                <column name="shipaddress" length="60"/>
+            </basic>
+            <basic name="shipcity">
+                <column name="shipcity" length="15"/>
+            </basic>
+            <basic name="shipregion">
+                <column name="shipregion" length="15"/>
+            </basic>
+            <basic name="shippostalcode">
+                <column name="shippostalcode" length="10"/>
+            </basic>
+            <basic name="shipcountry">
+                <column name="shipcountry" length="15"/>
+            </basic>
+            <many-to-one name="customersByCustomerid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.CustomersEntity">
+                <join-column name="customerid" referenced-column-name="customerid"/>
+            </many-to-one>
+            <many-to-one name="employeesByEmployeeid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.EmployeesEntity">
+                <join-column name="employeeid" referenced-column-name="employeeid"/>
+            </many-to-one>
+            <many-to-one name="shippersByShipvia" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.ShippersEntity">
+                <join-column name="shipvia" referenced-column-name="shipperid"/>
+            </many-to-one>
+            <one-to-many name="orderDetailsesByOrderid" mapped-by="ordersByOrderid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.OrderDetailsEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.ProductsEntity">
+        <table name="products" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="productid">
+                <column name="productid" nullable="false" precision="19"/>
+            </id>
+            <basic name="productname">
+                <column name="productname" nullable="false" length="40"/>
+            </basic>
+            <basic name="supplierid">
+                <column name="supplierid" precision="19"/>
+            </basic>
+            <basic name="categoryid">
+                <column name="categoryid" precision="19"/>
+            </basic>
+            <basic name="quantityperunit">
+                <column name="quantityperunit" length="20"/>
+            </basic>
+            <basic name="unitprice">
+                <column name="unitprice" precision="17"/>
+            </basic>
+            <basic name="unitsinstock">
+                <column name="unitsinstock" precision="10"/>
+            </basic>
+            <basic name="unitsonorder">
+                <column name="unitsonorder" precision="10"/>
+            </basic>
+            <basic name="reorderlevel">
+                <column name="reorderlevel" precision="10"/>
+            </basic>
+            <basic name="discontinued">
+                <column name="discontinued" nullable="false" precision="1"/>
+            </basic>
+            <many-to-one name="categoriesByCategoryid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.CategoriesEntity">
+                <join-column name="categoryid" referenced-column-name="categoryid"/>
+            </many-to-one>
+            <many-to-one name="suppliersBySupplierid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.SuppliersEntity">
+                <join-column name="supplierid" referenced-column-name="supplierid"/>
+            </many-to-one>
+            <one-to-many name="orderDetailsesByProductid" mapped-by="productsByProductid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.OrderDetailsEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.RegionEntity">
+        <table name="region" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="regionid">
+                <column name="regionid" nullable="false" precision="19"/>
+            </id>
+            <basic name="regiondescription">
+                <column name="regiondescription" nullable="false" length="10000"/>
+            </basic>
+            <one-to-many name="territoriesesByRegionid" mapped-by="regionByRegionid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.TerritoriesEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.ShippersEntity">
+        <table name="shippers" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="shipperid">
+                <column name="shipperid" nullable="false" precision="19"/>
+            </id>
+            <basic name="companyname">
+                <column name="companyname" nullable="false" length="40"/>
+            </basic>
+            <basic name="phone">
+                <column name="phone" length="24"/>
+            </basic>
+            <one-to-many name="ordersesByShipperid" mapped-by="shippersByShipvia"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.OrdersEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.SuppliersEntity">
+        <table name="suppliers" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="supplierid">
+                <column name="supplierid" nullable="false" precision="19"/>
+            </id>
+            <basic name="companyname">
+                <column name="companyname" nullable="false" length="40"/>
+            </basic>
+            <basic name="contactname">
+                <column name="contactname" length="30"/>
+            </basic>
+            <basic name="contacttitle">
+                <column name="contacttitle" length="30"/>
+            </basic>
+            <basic name="address">
+                <column name="address" length="60"/>
+            </basic>
+            <basic name="city">
+                <column name="city" length="15"/>
+            </basic>
+            <basic name="region">
+                <column name="region" length="15"/>
+            </basic>
+            <basic name="postalcode">
+                <column name="postalcode" length="10"/>
+            </basic>
+            <basic name="country">
+                <column name="country" length="15"/>
+            </basic>
+            <basic name="phone">
+                <column name="phone" length="24"/>
+            </basic>
+            <basic name="fax">
+                <column name="fax" length="24"/>
+            </basic>
+            <basic name="homepage">
+                <column name="homepage" length="10000"/>
+            </basic>
+            <one-to-many name="productsesBySupplierid" mapped-by="suppliersBySupplierid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.ProductsEntity"/>
+        </attributes>
+    </entity>
+    <entity class="pl.agh.turek.bazy.hibernate.model.TerritoriesEntity">
+        <table name="territories" schema="public" catalog="northwind"/>
+        <attributes>
+            <id name="territoryid">
+                <column name="territoryid" nullable="false" length="20"/>
+            </id>
+            <basic name="territorydescription">
+                <column name="territorydescription" nullable="false" length="50"/>
+            </basic>
+            <basic name="regionid">
+                <column name="regionid" nullable="false" precision="19"/>
+            </basic>
+            <many-to-one name="regionByRegionid" optional="true"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.RegionEntity">
+                <join-column name="regionid" nullable="false" referenced-column-name="regionid"/>
+            </many-to-one>
+            <one-to-many name="employeeterritoriesesByTerritoryid" mapped-by="territoriesByTerritoryid"
+                         target-entity="pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntity"/>
+        </attributes>
+    </entity>
+</entity-mappings>

@@ -1,182 +1,172 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.sql.Date;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "orders", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "orders", schema = "public", catalog = "northwind")
 public class OrdersEntity {
-    private short orderId;
+    private long orderid;
+    private String customerid;
+    private Long employeeid;
+    private Date orderdate;
+    private Date requireddate;
+    private Date shippeddate;
+    private Long shipvia;
+    private Double freight;
+    private String shipname;
+    private String shipaddress;
+    private String shipcity;
+    private String shipregion;
+    private String shippostalcode;
+    private String shipcountry;
+    private Collection<OrderDetailsEntity> orderDetailsesByOrderid;
+    private CustomersEntity customersByCustomerid;
+    private EmployeesEntity employeesByEmployeeid;
+    private ShippersEntity shippersByShipvia;
 
-    @javax.persistence.Column(name = "OrderID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
     @Id
-    public short getOrderId() {
-        return orderId;
+    @Column(name = "orderid", nullable = false, insertable = true, updatable = true)
+    public long getOrderid() {
+        return orderid;
     }
 
-    public void setOrderId(short orderId) {
-        this.orderId = orderId;
+    public void setOrderid(long orderid) {
+        this.orderid = orderid;
     }
 
-    private String customerId;
-
-    @javax.persistence.Column(name = "CustomerID", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Basic
-    public String getCustomerId() {
-        return customerId;
+    @Column(name = "customerid", nullable = true, insertable = true, updatable = true, length = 5)
+    public String getCustomerid() {
+        return customerid;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
     }
 
-    private Short employeeId;
-
-    @javax.persistence.Column(name = "EmployeeID", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
     @Basic
-    public Short getEmployeeId() {
-        return employeeId;
+    @Column(name = "employeeid", nullable = true, insertable = true, updatable = true)
+    public Long getEmployeeid() {
+        return employeeid;
     }
 
-    public void setEmployeeId(Short employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeid(Long employeeid) {
+        this.employeeid = employeeid;
     }
 
-    private Date orderDate;
-
-    @javax.persistence.Column(name = "OrderDate", nullable = true, insertable = true, updatable = true, length = 13, precision = 0)
     @Basic
-    public Date getOrderDate() {
-        return orderDate;
+    @Column(name = "orderdate", nullable = true, insertable = true, updatable = true)
+    public Date getOrderdate() {
+        return orderdate;
     }
 
-    public void setOrderDate(Date orderDate) {
-        this.orderDate = orderDate;
+    public void setOrderdate(Date orderdate) {
+        this.orderdate = orderdate;
     }
 
-    private Date requiredDate;
-
-    @javax.persistence.Column(name = "RequiredDate", nullable = true, insertable = true, updatable = true, length = 13, precision = 0)
     @Basic
-    public Date getRequiredDate() {
-        return requiredDate;
+    @Column(name = "requireddate", nullable = true, insertable = true, updatable = true)
+    public Date getRequireddate() {
+        return requireddate;
     }
 
-    public void setRequiredDate(Date requiredDate) {
-        this.requiredDate = requiredDate;
+    public void setRequireddate(Date requireddate) {
+        this.requireddate = requireddate;
     }
 
-    private Date shippedDate;
-
-    @javax.persistence.Column(name = "ShippedDate", nullable = true, insertable = true, updatable = true, length = 13, precision = 0)
     @Basic
-    public Date getShippedDate() {
-        return shippedDate;
+    @Column(name = "shippeddate", nullable = true, insertable = true, updatable = true)
+    public Date getShippeddate() {
+        return shippeddate;
     }
 
-    public void setShippedDate(Date shippedDate) {
-        this.shippedDate = shippedDate;
+    public void setShippeddate(Date shippeddate) {
+        this.shippeddate = shippeddate;
     }
 
-    private Short shipVia;
-
-    @javax.persistence.Column(name = "ShipVia", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
     @Basic
-    public Short getShipVia() {
-        return shipVia;
+    @Column(name = "shipvia", nullable = true, insertable = true, updatable = true)
+    public Long getShipvia() {
+        return shipvia;
     }
 
-    public void setShipVia(Short shipVia) {
-        this.shipVia = shipVia;
+    public void setShipvia(Long shipvia) {
+        this.shipvia = shipvia;
     }
 
-    private Float freight;
-
-    @javax.persistence.Column(name = "Freight", nullable = true, insertable = true, updatable = true, length = 8, precision = 8)
     @Basic
-    public Float getFreight() {
+    @Column(name = "freight", nullable = true, insertable = true, updatable = true, precision = 17)
+    public Double getFreight() {
         return freight;
     }
 
-    public void setFreight(Float freight) {
+    public void setFreight(Double freight) {
         this.freight = freight;
     }
 
-    private String shipName;
-
-    @javax.persistence.Column(name = "ShipName", nullable = true, insertable = true, updatable = true, length = 40, precision = 0)
     @Basic
-    public String getShipName() {
-        return shipName;
+    @Column(name = "shipname", nullable = true, insertable = true, updatable = true, length = 40)
+    public String getShipname() {
+        return shipname;
     }
 
-    public void setShipName(String shipName) {
-        this.shipName = shipName;
+    public void setShipname(String shipname) {
+        this.shipname = shipname;
     }
 
-    private String shipAddress;
-
-    @javax.persistence.Column(name = "ShipAddress", nullable = true, insertable = true, updatable = true, length = 60, precision = 0)
     @Basic
-    public String getShipAddress() {
-        return shipAddress;
+    @Column(name = "shipaddress", nullable = true, insertable = true, updatable = true, length = 60)
+    public String getShipaddress() {
+        return shipaddress;
     }
 
-    public void setShipAddress(String shipAddress) {
-        this.shipAddress = shipAddress;
+    public void setShipaddress(String shipaddress) {
+        this.shipaddress = shipaddress;
     }
 
-    private String shipCity;
-
-    @javax.persistence.Column(name = "ShipCity", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
     @Basic
-    public String getShipCity() {
-        return shipCity;
+    @Column(name = "shipcity", nullable = true, insertable = true, updatable = true, length = 15)
+    public String getShipcity() {
+        return shipcity;
     }
 
-    public void setShipCity(String shipCity) {
-        this.shipCity = shipCity;
+    public void setShipcity(String shipcity) {
+        this.shipcity = shipcity;
     }
 
-    private String shipRegion;
-
-    @javax.persistence.Column(name = "ShipRegion", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
     @Basic
-    public String getShipRegion() {
-        return shipRegion;
+    @Column(name = "shipregion", nullable = true, insertable = true, updatable = true, length = 15)
+    public String getShipregion() {
+        return shipregion;
     }
 
-    public void setShipRegion(String shipRegion) {
-        this.shipRegion = shipRegion;
+    public void setShipregion(String shipregion) {
+        this.shipregion = shipregion;
     }
 
-    private String shipPostalCode;
-
-    @javax.persistence.Column(name = "ShipPostalCode", nullable = true, insertable = true, updatable = true, length = 10, precision = 0)
     @Basic
-    public String getShipPostalCode() {
-        return shipPostalCode;
+    @Column(name = "shippostalcode", nullable = true, insertable = true, updatable = true, length = 10)
+    public String getShippostalcode() {
+        return shippostalcode;
     }
 
-    public void setShipPostalCode(String shipPostalCode) {
-        this.shipPostalCode = shipPostalCode;
+    public void setShippostalcode(String shippostalcode) {
+        this.shippostalcode = shippostalcode;
     }
 
-    private String shipCountry;
-
-    @javax.persistence.Column(name = "ShipCountry", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
     @Basic
-    public String getShipCountry() {
-        return shipCountry;
+    @Column(name = "shipcountry", nullable = true, insertable = true, updatable = true, length = 15)
+    public String getShipcountry() {
+        return shipcountry;
     }
 
-    public void setShipCountry(String shipCountry) {
-        this.shipCountry = shipCountry;
+    public void setShipcountry(String shipcountry) {
+        this.shipcountry = shipcountry;
     }
 
     @Override
@@ -186,41 +176,80 @@ public class OrdersEntity {
 
         OrdersEntity that = (OrdersEntity) o;
 
-        if (orderId != that.orderId) return false;
-        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
-        if (employeeId != null ? !employeeId.equals(that.employeeId) : that.employeeId != null) return false;
+        if (orderid != that.orderid) return false;
+        if (customerid != null ? !customerid.equals(that.customerid) : that.customerid != null) return false;
+        if (employeeid != null ? !employeeid.equals(that.employeeid) : that.employeeid != null) return false;
         if (freight != null ? !freight.equals(that.freight) : that.freight != null) return false;
-        if (orderDate != null ? !orderDate.equals(that.orderDate) : that.orderDate != null) return false;
-        if (requiredDate != null ? !requiredDate.equals(that.requiredDate) : that.requiredDate != null) return false;
-        if (shipAddress != null ? !shipAddress.equals(that.shipAddress) : that.shipAddress != null) return false;
-        if (shipCity != null ? !shipCity.equals(that.shipCity) : that.shipCity != null) return false;
-        if (shipCountry != null ? !shipCountry.equals(that.shipCountry) : that.shipCountry != null) return false;
-        if (shipName != null ? !shipName.equals(that.shipName) : that.shipName != null) return false;
-        if (shipPostalCode != null ? !shipPostalCode.equals(that.shipPostalCode) : that.shipPostalCode != null)
+        if (orderdate != null ? !orderdate.equals(that.orderdate) : that.orderdate != null) return false;
+        if (requireddate != null ? !requireddate.equals(that.requireddate) : that.requireddate != null) return false;
+        if (shipaddress != null ? !shipaddress.equals(that.shipaddress) : that.shipaddress != null) return false;
+        if (shipcity != null ? !shipcity.equals(that.shipcity) : that.shipcity != null) return false;
+        if (shipcountry != null ? !shipcountry.equals(that.shipcountry) : that.shipcountry != null) return false;
+        if (shipname != null ? !shipname.equals(that.shipname) : that.shipname != null) return false;
+        if (shippeddate != null ? !shippeddate.equals(that.shippeddate) : that.shippeddate != null) return false;
+        if (shippostalcode != null ? !shippostalcode.equals(that.shippostalcode) : that.shippostalcode != null)
             return false;
-        if (shipRegion != null ? !shipRegion.equals(that.shipRegion) : that.shipRegion != null) return false;
-        if (shipVia != null ? !shipVia.equals(that.shipVia) : that.shipVia != null) return false;
-        if (shippedDate != null ? !shippedDate.equals(that.shippedDate) : that.shippedDate != null) return false;
+        if (shipregion != null ? !shipregion.equals(that.shipregion) : that.shipregion != null) return false;
+        if (shipvia != null ? !shipvia.equals(that.shipvia) : that.shipvia != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) orderId;
-        result = 31 * result + (customerId != null ? customerId.hashCode() : 0);
-        result = 31 * result + (employeeId != null ? employeeId.hashCode() : 0);
-        result = 31 * result + (orderDate != null ? orderDate.hashCode() : 0);
-        result = 31 * result + (requiredDate != null ? requiredDate.hashCode() : 0);
-        result = 31 * result + (shippedDate != null ? shippedDate.hashCode() : 0);
-        result = 31 * result + (shipVia != null ? shipVia.hashCode() : 0);
+        int result = (int) (orderid ^ (orderid >>> 32));
+        result = 31 * result + (customerid != null ? customerid.hashCode() : 0);
+        result = 31 * result + (employeeid != null ? employeeid.hashCode() : 0);
+        result = 31 * result + (orderdate != null ? orderdate.hashCode() : 0);
+        result = 31 * result + (requireddate != null ? requireddate.hashCode() : 0);
+        result = 31 * result + (shippeddate != null ? shippeddate.hashCode() : 0);
+        result = 31 * result + (shipvia != null ? shipvia.hashCode() : 0);
         result = 31 * result + (freight != null ? freight.hashCode() : 0);
-        result = 31 * result + (shipName != null ? shipName.hashCode() : 0);
-        result = 31 * result + (shipAddress != null ? shipAddress.hashCode() : 0);
-        result = 31 * result + (shipCity != null ? shipCity.hashCode() : 0);
-        result = 31 * result + (shipRegion != null ? shipRegion.hashCode() : 0);
-        result = 31 * result + (shipPostalCode != null ? shipPostalCode.hashCode() : 0);
-        result = 31 * result + (shipCountry != null ? shipCountry.hashCode() : 0);
+        result = 31 * result + (shipname != null ? shipname.hashCode() : 0);
+        result = 31 * result + (shipaddress != null ? shipaddress.hashCode() : 0);
+        result = 31 * result + (shipcity != null ? shipcity.hashCode() : 0);
+        result = 31 * result + (shipregion != null ? shipregion.hashCode() : 0);
+        result = 31 * result + (shippostalcode != null ? shippostalcode.hashCode() : 0);
+        result = 31 * result + (shipcountry != null ? shipcountry.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "ordersByOrderid")
+    public Collection<OrderDetailsEntity> getOrderDetailsesByOrderid() {
+        return orderDetailsesByOrderid;
+    }
+
+    public void setOrderDetailsesByOrderid(Collection<OrderDetailsEntity> orderDetailsesByOrderid) {
+        this.orderDetailsesByOrderid = orderDetailsesByOrderid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "customerid", referencedColumnName = "customerid")
+    public CustomersEntity getCustomersByCustomerid() {
+        return customersByCustomerid;
+    }
+
+    public void setCustomersByCustomerid(CustomersEntity customersByCustomerid) {
+        this.customersByCustomerid = customersByCustomerid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "employeeid", referencedColumnName = "employeeid")
+    public EmployeesEntity getEmployeesByEmployeeid() {
+        return employeesByEmployeeid;
+    }
+
+    public void setEmployeesByEmployeeid(EmployeesEntity employeesByEmployeeid) {
+        this.employeesByEmployeeid = employeesByEmployeeid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "shipvia", referencedColumnName = "shipperid")
+    public ShippersEntity getShippersByShipvia() {
+        return shippersByShipvia;
+    }
+
+    public void setShippersByShipvia(ShippersEntity shippersByShipvia) {
+        this.shippersByShipvia = shippersByShipvia;
     }
 }

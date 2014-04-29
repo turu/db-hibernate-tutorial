@@ -8,25 +8,27 @@ import java.io.Serializable;
  * Author: Piotr Turek
  */
 public class EmployeeterritoriesEntityPK implements Serializable {
-    private short employeeId;
-    private String territoryId;
+    private long employeeid;
+    private String territoryid;
 
-@Id@Column(name = "EmployeeID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
-public short getEmployeeId() {
-    return employeeId;
-}
-
-    public void setEmployeeId(short employeeId) {
-        this.employeeId = employeeId;
+    @Column(name = "employeeid", nullable = false, insertable = true, updatable = true)
+    @Id
+    public long getEmployeeid() {
+        return employeeid;
     }
 
-    @Id@Column(name = "TerritoryID", nullable = false, insertable = true, updatable = true, length = 20, precision = 0)
-    public String getTerritoryId() {
-        return territoryId;
+    public void setEmployeeid(long employeeid) {
+        this.employeeid = employeeid;
     }
 
-    public void setTerritoryId(String territoryId) {
-        this.territoryId = territoryId;
+    @Column(name = "territoryid", nullable = false, insertable = true, updatable = true, length = 20)
+    @Id
+    public String getTerritoryid() {
+        return territoryid;
+    }
+
+    public void setTerritoryid(String territoryid) {
+        this.territoryid = territoryid;
     }
 
     @Override
@@ -36,15 +38,16 @@ public short getEmployeeId() {
 
         EmployeeterritoriesEntityPK that = (EmployeeterritoriesEntityPK) o;
 
-        if (employeeId != that.employeeId) return false;
-        if (territoryId != null ? !territoryId.equals(that.territoryId) : that.territoryId != null) return false;
+        if (employeeid != that.employeeid) return false;
+        if (territoryid != null ? !territoryid.equals(that.territoryid) : that.territoryid != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) employeeId;
-        result = 31 * result + (territoryId != null ? territoryId.hashCode() : 0);
+        int result = (int) (employeeid ^ (employeeid >>> 32));
+        result = 31 * result + (territoryid != null ? territoryid.hashCode() : 0);
         return result;
-}}
+    }
+}

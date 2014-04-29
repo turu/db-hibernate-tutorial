@@ -1,43 +1,41 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "shippers", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "shippers", schema = "public", catalog = "northwind")
 public class ShippersEntity {
-    private short shipperId;
-
-    @javax.persistence.Column(name = "ShipperID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
-    @Id
-    public short getShipperId() {
-        return shipperId;
-    }
-
-    public void setShipperId(short shipperId) {
-        this.shipperId = shipperId;
-    }
-
-    private String companyName;
-
-    @javax.persistence.Column(name = "CompanyName", nullable = false, insertable = true, updatable = true, length = 40, precision = 0)
-    @Basic
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
+    private long shipperid;
+    private String companyname;
     private String phone;
+    private Collection<OrdersEntity> ordersesByShipperid;
 
-    @javax.persistence.Column(name = "Phone", nullable = true, insertable = true, updatable = true, length = 24, precision = 0)
+    @Id
+    @Column(name = "shipperid", nullable = false, insertable = true, updatable = true)
+    public long getShipperid() {
+        return shipperid;
+    }
+
+    public void setShipperid(long shipperid) {
+        this.shipperid = shipperid;
+    }
+
     @Basic
+    @Column(name = "companyname", nullable = false, insertable = true, updatable = true, length = 40)
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
+    }
+
+    @Basic
+    @Column(name = "phone", nullable = true, insertable = true, updatable = true, length = 24)
     public String getPhone() {
         return phone;
     }
@@ -53,8 +51,8 @@ public class ShippersEntity {
 
         ShippersEntity that = (ShippersEntity) o;
 
-        if (shipperId != that.shipperId) return false;
-        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
+        if (shipperid != that.shipperid) return false;
+        if (companyname != null ? !companyname.equals(that.companyname) : that.companyname != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
 
         return true;
@@ -62,9 +60,18 @@ public class ShippersEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) shipperId;
-        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
+        int result = (int) (shipperid ^ (shipperid >>> 32));
+        result = 31 * result + (companyname != null ? companyname.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "shippersByShipvia")
+    public Collection<OrdersEntity> getOrdersesByShipperid() {
+        return ordersesByShipperid;
+    }
+
+    public void setOrdersesByShipperid(Collection<OrdersEntity> ordersesByShipperid) {
+        this.ordersesByShipperid = ordersesByShipperid;
     }
 }

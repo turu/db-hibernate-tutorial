@@ -1,42 +1,43 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "categories", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "categories", schema = "public", catalog = "northwind")
 public class CategoriesEntity {
-    private short categoryId;
-
-    @javax.persistence.Column(name = "CategoryID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
-    @javax.persistence.Id
-    public short getCategoryId() {
-        return categoryId;
-    }
-
-    public void setCategoryId(short categoryId) {
-        this.categoryId = categoryId;
-    }
-
-    private String categoryName;
-
-    @javax.persistence.Column(name = "CategoryName", nullable = false, insertable = true, updatable = true, length = 15, precision = 0)
-    @javax.persistence.Basic
-    public String getCategoryName() {
-        return categoryName;
-    }
-
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
-    }
-
+    private long categoryid;
+    private String categoryname;
     private String description;
+    private byte[] picture;
+    private Collection<ProductsEntity> productsesByCategoryid;
 
-    @javax.persistence.Column(name = "Description", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @javax.persistence.Basic
+    @Id
+    @Column(name = "categoryid", nullable = false, insertable = true, updatable = true)
+    public long getCategoryid() {
+        return categoryid;
+    }
+
+    public void setCategoryid(long categoryid) {
+        this.categoryid = categoryid;
+    }
+
+    @Basic
+    @Column(name = "categoryname", nullable = false, insertable = true, updatable = true, length = 15)
+    public String getCategoryname() {
+        return categoryname;
+    }
+
+    public void setCategoryname(String categoryname) {
+        this.categoryname = categoryname;
+    }
+
+    @Basic
+    @Column(name = "description", nullable = true, insertable = true, updatable = true, length = 10000)
     public String getDescription() {
         return description;
     }
@@ -45,10 +46,8 @@ public class CategoriesEntity {
         this.description = description;
     }
 
-    private byte[] picture;
-
-    @javax.persistence.Column(name = "Picture", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "picture", nullable = true, insertable = true, updatable = true)
     public byte[] getPicture() {
         return picture;
     }
@@ -64,8 +63,8 @@ public class CategoriesEntity {
 
         CategoriesEntity that = (CategoriesEntity) o;
 
-        if (categoryId != that.categoryId) return false;
-        if (categoryName != null ? !categoryName.equals(that.categoryName) : that.categoryName != null) return false;
+        if (categoryid != that.categoryid) return false;
+        if (categoryname != null ? !categoryname.equals(that.categoryname) : that.categoryname != null) return false;
         if (description != null ? !description.equals(that.description) : that.description != null) return false;
         if (!Arrays.equals(picture, that.picture)) return false;
 
@@ -74,10 +73,19 @@ public class CategoriesEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) categoryId;
-        result = 31 * result + (categoryName != null ? categoryName.hashCode() : 0);
+        int result = (int) (categoryid ^ (categoryid >>> 32));
+        result = 31 * result + (categoryname != null ? categoryname.hashCode() : 0);
         result = 31 * result + (description != null ? description.hashCode() : 0);
         result = 31 * result + (picture != null ? Arrays.hashCode(picture) : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "categoriesByCategoryid")
+    public Collection<ProductsEntity> getProductsesByCategoryid() {
+        return productsesByCategoryid;
+    }
+
+    public void setProductsesByCategoryid(Collection<ProductsEntity> productsesByCategoryid) {
+        this.productsesByCategoryid = productsesByCategoryid;
     }
 }

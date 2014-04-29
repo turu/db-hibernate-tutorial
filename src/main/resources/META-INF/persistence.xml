@@ -5,6 +5,38 @@
              version="2.0">
 
     <persistence-unit name="dataSource" transaction-type="RESOURCE_LOCAL">
+        <mapping-file>META-INF/properties/mapping.xml</mapping-file>
+        <class>pl.agh.turek.bazy.hibernate.model.CategoriesEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.CustomerdemographicsEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.CustomersEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.EmployeesEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.OrderDetailsEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.OrdersEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.ProductsEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.RegionEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.ShippersEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.SuppliersEntity</class>
+        <class>pl.agh.turek.bazy.hibernate.model.TerritoriesEntity</class>
+        <properties>
+            <property name="toplink.jdbc.url" value="jdbc:postgresql://localhost:5432/northwind"/>
+            <property name="toplink.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="toplink.jdbc.user" value="bazy"/>
+            <property name="toplink.jdbc.password" value="kocham"/>
+            <property name="hibernate.connection.url" value="jdbc:postgresql://localhost:5432/northwind"/>
+            <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+            <property name="hibernate.connection.username" value="bazy"/>
+            <property name="hibernate.connection.password" value="kocham"/>
+            <property name="openjpa.ConnectionURL" value="jdbc:postgresql://localhost:5432/northwind"/>
+            <property name="openjpa.ConnectionDriverName" value="org.postgresql.Driver"/>
+            <property name="openjpa.ConnectionUserName" value="bazy"/>
+            <property name="openjpa.ConnectionPassword" value="kocham"/>
+            <property name="eclipselink.jdbc.url" value="jdbc:postgresql://localhost:5432/northwind"/>
+            <property name="eclipselink.jdbc.driver" value="org.postgresql.Driver"/>
+            <property name="eclipselink.jdbc.user" value="bazy"/>
+            <property name="eclipselink.jdbc.password" value="kocham"/>
+        </properties>
     </persistence-unit>
 
 </persistence>

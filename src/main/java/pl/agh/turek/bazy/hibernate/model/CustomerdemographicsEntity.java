@@ -1,37 +1,36 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "customerdemographics", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "customerdemographics", schema = "public", catalog = "northwind")
 public class CustomerdemographicsEntity {
-    private String customerTypeId;
+    private String customertypeid;
+    private String customerdesc;
+    private Collection<CustomercustomerdemoEntity> customercustomerdemosByCustomertypeid;
 
-    @javax.persistence.Column(name = "CustomerTypeID", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Id
-    public String getCustomerTypeId() {
-        return customerTypeId;
+    @Column(name = "customertypeid", nullable = false, insertable = true, updatable = true, length = 10)
+    public String getCustomertypeid() {
+        return customertypeid;
     }
 
-    public void setCustomerTypeId(String customerTypeId) {
-        this.customerTypeId = customerTypeId;
+    public void setCustomertypeid(String customertypeid) {
+        this.customertypeid = customertypeid;
     }
 
-    private String customerDesc;
-
-    @javax.persistence.Column(name = "CustomerDesc", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Basic
-    public String getCustomerDesc() {
-        return customerDesc;
+    @Column(name = "customerdesc", nullable = true, insertable = true, updatable = true, length = 10000)
+    public String getCustomerdesc() {
+        return customerdesc;
     }
 
-    public void setCustomerDesc(String customerDesc) {
-        this.customerDesc = customerDesc;
+    public void setCustomerdesc(String customerdesc) {
+        this.customerdesc = customerdesc;
     }
 
     @Override
@@ -41,8 +40,8 @@ public class CustomerdemographicsEntity {
 
         CustomerdemographicsEntity that = (CustomerdemographicsEntity) o;
 
-        if (customerDesc != null ? !customerDesc.equals(that.customerDesc) : that.customerDesc != null) return false;
-        if (customerTypeId != null ? !customerTypeId.equals(that.customerTypeId) : that.customerTypeId != null)
+        if (customerdesc != null ? !customerdesc.equals(that.customerdesc) : that.customerdesc != null) return false;
+        if (customertypeid != null ? !customertypeid.equals(that.customertypeid) : that.customertypeid != null)
             return false;
 
         return true;
@@ -50,8 +49,17 @@ public class CustomerdemographicsEntity {
 
     @Override
     public int hashCode() {
-        int result = customerTypeId != null ? customerTypeId.hashCode() : 0;
-        result = 31 * result + (customerDesc != null ? customerDesc.hashCode() : 0);
+        int result = customertypeid != null ? customertypeid.hashCode() : 0;
+        result = 31 * result + (customerdesc != null ? customerdesc.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "customerdemographicsByCustomertypeid")
+    public Collection<CustomercustomerdemoEntity> getCustomercustomerdemosByCustomertypeid() {
+        return customercustomerdemosByCustomertypeid;
+    }
+
+    public void setCustomercustomerdemosByCustomertypeid(Collection<CustomercustomerdemoEntity> customercustomerdemosByCustomertypeid) {
+        this.customercustomerdemosByCustomertypeid = customercustomerdemosByCustomertypeid;
     }
 }

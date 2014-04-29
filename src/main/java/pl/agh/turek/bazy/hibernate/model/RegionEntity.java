@@ -1,37 +1,36 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "region", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "region", schema = "public", catalog = "northwind")
 public class RegionEntity {
-    private short regionId;
+    private long regionid;
+    private String regiondescription;
+    private Collection<TerritoriesEntity> territoriesesByRegionid;
 
-    @javax.persistence.Column(name = "RegionID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
     @Id
-    public short getRegionId() {
-        return regionId;
+    @Column(name = "regionid", nullable = false, insertable = true, updatable = true)
+    public long getRegionid() {
+        return regionid;
     }
 
-    public void setRegionId(short regionId) {
-        this.regionId = regionId;
+    public void setRegionid(long regionid) {
+        this.regionid = regionid;
     }
 
-    private String regionDescription;
-
-    @javax.persistence.Column(name = "RegionDescription", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
     @Basic
-    public String getRegionDescription() {
-        return regionDescription;
+    @Column(name = "regiondescription", nullable = false, insertable = true, updatable = true, length = 10000)
+    public String getRegiondescription() {
+        return regiondescription;
     }
 
-    public void setRegionDescription(String regionDescription) {
-        this.regionDescription = regionDescription;
+    public void setRegiondescription(String regiondescription) {
+        this.regiondescription = regiondescription;
     }
 
     @Override
@@ -41,8 +40,8 @@ public class RegionEntity {
 
         RegionEntity that = (RegionEntity) o;
 
-        if (regionId != that.regionId) return false;
-        if (regionDescription != null ? !regionDescription.equals(that.regionDescription) : that.regionDescription != null)
+        if (regionid != that.regionid) return false;
+        if (regiondescription != null ? !regiondescription.equals(that.regiondescription) : that.regiondescription != null)
             return false;
 
         return true;
@@ -50,8 +49,17 @@ public class RegionEntity {
 
     @Override
     public int hashCode() {
-        int result = (int) regionId;
-        result = 31 * result + (regionDescription != null ? regionDescription.hashCode() : 0);
+        int result = (int) (regionid ^ (regionid >>> 32));
+        result = 31 * result + (regiondescription != null ? regiondescription.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "regionByRegionid")
+    public Collection<TerritoriesEntity> getTerritoriesesByRegionid() {
+        return territoriesesByRegionid;
+    }
+
+    public void setTerritoriesesByRegionid(Collection<TerritoriesEntity> territoriesesByRegionid) {
+        this.territoriesesByRegionid = territoriesesByRegionid;
     }
 }

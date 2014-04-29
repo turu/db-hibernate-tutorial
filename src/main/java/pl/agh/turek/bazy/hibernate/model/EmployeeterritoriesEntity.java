@@ -1,37 +1,37 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.IdClass(pl.agh.turek.bazy.hibernate.model.EmployeeterritoriesEntityPK.class)
-@javax.persistence.Table(name = "employeeterritories", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "employeeterritories", schema = "public", catalog = "northwind")
+@IdClass(EmployeeterritoriesEntityPK.class)
 public class EmployeeterritoriesEntity {
-    private short employeeId;
+    private long employeeid;
+    private String territoryid;
+    private EmployeesEntity employeesByEmployeeid;
+    private TerritoriesEntity territoriesByTerritoryid;
 
-    @javax.persistence.Column(name = "EmployeeID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
     @Id
-    public short getEmployeeId() {
-        return employeeId;
+    @Column(name = "employeeid", nullable = false, insertable = true, updatable = true)
+    public long getEmployeeid() {
+        return employeeid;
     }
 
-    public void setEmployeeId(short employeeId) {
-        this.employeeId = employeeId;
+    public void setEmployeeid(long employeeid) {
+        this.employeeid = employeeid;
     }
 
-    private String territoryId;
-
-    @javax.persistence.Column(name = "TerritoryID", nullable = false, insertable = true, updatable = true, length = 20, precision = 0)
     @Id
-    public String getTerritoryId() {
-        return territoryId;
+    @Column(name = "territoryid", nullable = false, insertable = true, updatable = true, length = 20)
+    public String getTerritoryid() {
+        return territoryid;
     }
 
-    public void setTerritoryId(String territoryId) {
-        this.territoryId = territoryId;
+    public void setTerritoryid(String territoryid) {
+        this.territoryid = territoryid;
     }
 
     @Override
@@ -41,16 +41,36 @@ public class EmployeeterritoriesEntity {
 
         EmployeeterritoriesEntity that = (EmployeeterritoriesEntity) o;
 
-        if (employeeId != that.employeeId) return false;
-        if (territoryId != null ? !territoryId.equals(that.territoryId) : that.territoryId != null) return false;
+        if (employeeid != that.employeeid) return false;
+        if (territoryid != null ? !territoryid.equals(that.territoryid) : that.territoryid != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) employeeId;
-        result = 31 * result + (territoryId != null ? territoryId.hashCode() : 0);
+        int result = (int) (employeeid ^ (employeeid >>> 32));
+        result = 31 * result + (territoryid != null ? territoryid.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "employeeid", referencedColumnName = "employeeid", nullable = false)
+    public EmployeesEntity getEmployeesByEmployeeid() {
+        return employeesByEmployeeid;
+    }
+
+    public void setEmployeesByEmployeeid(EmployeesEntity employeesByEmployeeid) {
+        this.employeesByEmployeeid = employeesByEmployeeid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "territoryid", referencedColumnName = "territoryid", nullable = false)
+    public TerritoriesEntity getTerritoriesByTerritoryid() {
+        return territoriesByTerritoryid;
+    }
+
+    public void setTerritoriesByTerritoryid(TerritoriesEntity territoriesByTerritoryid) {
+        this.territoriesByTerritoryid = territoriesByTerritoryid;
     }
 }

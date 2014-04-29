@@ -1,67 +1,70 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "customers", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "customers", schema = "public", catalog = "northwind")
 public class CustomersEntity {
-    private String customerID;
-
-    @javax.persistence.Column(name = "CustomerID", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @Id
-    public String getCustomerID() {
-        return customerID;
-    }
-
-    public void setCustomerID(String customerId) {
-        this.customerID = customerId;
-    }
-
-    private String companyName;
-
-    @javax.persistence.Column(name = "CompanyName", nullable = false, insertable = true, updatable = true, length = 40, precision = 0)
-    @Basic
-    public String getCompanyName() {
-        return companyName;
-    }
-
-    public void setCompanyName(String companyName) {
-        this.companyName = companyName;
-    }
-
-    private String contactName;
-
-    @javax.persistence.Column(name = "ContactName", nullable = true, insertable = true, updatable = true, length = 30, precision = 0)
-    @Basic
-    public String getContactName() {
-        return contactName;
-    }
-
-    public void setContactName(String contactName) {
-        this.contactName = contactName;
-    }
-
-    private String contactTitle;
-
-    @javax.persistence.Column(name = "ContactTitle", nullable = true, insertable = true, updatable = true, length = 30, precision = 0)
-    @Basic
-    public String getContactTitle() {
-        return contactTitle;
-    }
-
-    public void setContactTitle(String contactTitle) {
-        this.contactTitle = contactTitle;
-    }
-
+    private String customerid;
+    private String companyname;
+    private String contactname;
+    private String contacttitle;
     private String address;
+    private String city;
+    private String region;
+    private String postalcode;
+    private String country;
+    private String phone;
+    private String fax;
+    private Collection<CustomercustomerdemoEntity> customercustomerdemosByCustomerid;
+    private Collection<OrdersEntity> ordersesByCustomerid;
 
-    @javax.persistence.Column(name = "Address", nullable = true, insertable = true, updatable = true, length = 60, precision = 0)
+    @Id
+    @Column(name = "customerid", nullable = false, insertable = true, updatable = true, length = 5)
+    public String getCustomerid() {
+        return customerid;
+    }
+
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
+    }
+
     @Basic
+    @Column(name = "companyname", nullable = false, insertable = true, updatable = true, length = 40)
+    public String getCompanyname() {
+        return companyname;
+    }
+
+    public void setCompanyname(String companyname) {
+        this.companyname = companyname;
+    }
+
+    @Basic
+    @Column(name = "contactname", nullable = true, insertable = true, updatable = true, length = 30)
+    public String getContactname() {
+        return contactname;
+    }
+
+    public void setContactname(String contactname) {
+        this.contactname = contactname;
+    }
+
+    @Basic
+    @Column(name = "contacttitle", nullable = true, insertable = true, updatable = true, length = 30)
+    public String getContacttitle() {
+        return contacttitle;
+    }
+
+    public void setContacttitle(String contacttitle) {
+        this.contacttitle = contacttitle;
+    }
+
+    @Basic
+    @Column(name = "address", nullable = true, insertable = true, updatable = true, length = 60)
     public String getAddress() {
         return address;
     }
@@ -70,10 +73,8 @@ public class CustomersEntity {
         this.address = address;
     }
 
-    private String city;
-
-    @javax.persistence.Column(name = "City", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
     @Basic
+    @Column(name = "city", nullable = true, insertable = true, updatable = true, length = 15)
     public String getCity() {
         return city;
     }
@@ -82,10 +83,8 @@ public class CustomersEntity {
         this.city = city;
     }
 
-    private String region;
-
-    @javax.persistence.Column(name = "Region", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
     @Basic
+    @Column(name = "region", nullable = true, insertable = true, updatable = true, length = 15)
     public String getRegion() {
         return region;
     }
@@ -94,22 +93,18 @@ public class CustomersEntity {
         this.region = region;
     }
 
-    private String postalCode;
-
-    @javax.persistence.Column(name = "PostalCode", nullable = true, insertable = true, updatable = true, length = 10, precision = 0)
     @Basic
-    public String getPostalCode() {
-        return postalCode;
+    @Column(name = "postalcode", nullable = true, insertable = true, updatable = true, length = 10)
+    public String getPostalcode() {
+        return postalcode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
     }
 
-    private String country;
-
-    @javax.persistence.Column(name = "Country", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
     @Basic
+    @Column(name = "country", nullable = true, insertable = true, updatable = true, length = 15)
     public String getCountry() {
         return country;
     }
@@ -118,10 +113,8 @@ public class CustomersEntity {
         this.country = country;
     }
 
-    private String phone;
-
-    @javax.persistence.Column(name = "Phone", nullable = true, insertable = true, updatable = true, length = 24, precision = 0)
     @Basic
+    @Column(name = "phone", nullable = true, insertable = true, updatable = true, length = 24)
     public String getPhone() {
         return phone;
     }
@@ -130,10 +123,8 @@ public class CustomersEntity {
         this.phone = phone;
     }
 
-    private String fax;
-
-    @javax.persistence.Column(name = "Fax", nullable = true, insertable = true, updatable = true, length = 24, precision = 0)
     @Basic
+    @Column(name = "fax", nullable = true, insertable = true, updatable = true, length = 24)
     public String getFax() {
         return fax;
     }
@@ -151,14 +142,14 @@ public class CustomersEntity {
 
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
         if (city != null ? !city.equals(that.city) : that.city != null) return false;
-        if (companyName != null ? !companyName.equals(that.companyName) : that.companyName != null) return false;
-        if (contactName != null ? !contactName.equals(that.contactName) : that.contactName != null) return false;
-        if (contactTitle != null ? !contactTitle.equals(that.contactTitle) : that.contactTitle != null) return false;
+        if (companyname != null ? !companyname.equals(that.companyname) : that.companyname != null) return false;
+        if (contactname != null ? !contactname.equals(that.contactname) : that.contactname != null) return false;
+        if (contacttitle != null ? !contacttitle.equals(that.contacttitle) : that.contacttitle != null) return false;
         if (country != null ? !country.equals(that.country) : that.country != null) return false;
-        if (customerID != null ? !customerID.equals(that.customerID) : that.customerID != null) return false;
+        if (customerid != null ? !customerid.equals(that.customerid) : that.customerid != null) return false;
         if (fax != null ? !fax.equals(that.fax) : that.fax != null) return false;
         if (phone != null ? !phone.equals(that.phone) : that.phone != null) return false;
-        if (postalCode != null ? !postalCode.equals(that.postalCode) : that.postalCode != null) return false;
+        if (postalcode != null ? !postalcode.equals(that.postalcode) : that.postalcode != null) return false;
         if (region != null ? !region.equals(that.region) : that.region != null) return false;
 
         return true;
@@ -166,17 +157,35 @@ public class CustomersEntity {
 
     @Override
     public int hashCode() {
-        int result = customerID != null ? customerID.hashCode() : 0;
-        result = 31 * result + (companyName != null ? companyName.hashCode() : 0);
-        result = 31 * result + (contactName != null ? contactName.hashCode() : 0);
-        result = 31 * result + (contactTitle != null ? contactTitle.hashCode() : 0);
+        int result = customerid != null ? customerid.hashCode() : 0;
+        result = 31 * result + (companyname != null ? companyname.hashCode() : 0);
+        result = 31 * result + (contactname != null ? contactname.hashCode() : 0);
+        result = 31 * result + (contacttitle != null ? contacttitle.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (region != null ? region.hashCode() : 0);
-        result = 31 * result + (postalCode != null ? postalCode.hashCode() : 0);
+        result = 31 * result + (postalcode != null ? postalcode.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
         result = 31 * result + (phone != null ? phone.hashCode() : 0);
         result = 31 * result + (fax != null ? fax.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "customersByCustomerid")
+    public Collection<CustomercustomerdemoEntity> getCustomercustomerdemosByCustomerid() {
+        return customercustomerdemosByCustomerid;
+    }
+
+    public void setCustomercustomerdemosByCustomerid(Collection<CustomercustomerdemoEntity> customercustomerdemosByCustomerid) {
+        this.customercustomerdemosByCustomerid = customercustomerdemosByCustomerid;
+    }
+
+    @OneToMany(mappedBy = "customersByCustomerid")
+    public Collection<OrdersEntity> getOrdersesByCustomerid() {
+        return ordersesByCustomerid;
+    }
+
+    public void setOrdersesByCustomerid(Collection<OrdersEntity> ordersesByCustomerid) {
+        this.ordersesByCustomerid = ordersesByCustomerid;
     }
 }

@@ -1,36 +1,37 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.IdClass(pl.agh.turek.bazy.hibernate.model.CustomercustomerdemoEntityPK.class)
-@javax.persistence.Table(name = "customercustomerdemo", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "customercustomerdemo", schema = "public", catalog = "northwind")
+@IdClass(CustomercustomerdemoEntityPK.class)
 public class CustomercustomerdemoEntity {
-    private String customerId;
+    private String customerid;
+    private String customertypeid;
+    private CustomerdemographicsEntity customerdemographicsByCustomertypeid;
+    private CustomersEntity customersByCustomerid;
 
-    @javax.persistence.Column(name = "CustomerID", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @javax.persistence.Id
-    public String getCustomerId() {
-        return customerId;
+    @Id
+    @Column(name = "customerid", nullable = false, insertable = true, updatable = true, length = 5)
+    public String getCustomerid() {
+        return customerid;
     }
 
-    public void setCustomerId(String customerId) {
-        this.customerId = customerId;
+    public void setCustomerid(String customerid) {
+        this.customerid = customerid;
     }
 
-    private String customerTypeId;
-
-    @javax.persistence.Column(name = "CustomerTypeID", nullable = false, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @javax.persistence.Id
-    public String getCustomerTypeId() {
-        return customerTypeId;
+    @Id
+    @Column(name = "customertypeid", nullable = false, insertable = true, updatable = true, length = 10)
+    public String getCustomertypeid() {
+        return customertypeid;
     }
 
-    public void setCustomerTypeId(String customerTypeId) {
-        this.customerTypeId = customerTypeId;
+    public void setCustomertypeid(String customertypeid) {
+        this.customertypeid = customertypeid;
     }
 
     @Override
@@ -40,8 +41,8 @@ public class CustomercustomerdemoEntity {
 
         CustomercustomerdemoEntity that = (CustomercustomerdemoEntity) o;
 
-        if (customerId != null ? !customerId.equals(that.customerId) : that.customerId != null) return false;
-        if (customerTypeId != null ? !customerTypeId.equals(that.customerTypeId) : that.customerTypeId != null)
+        if (customerid != null ? !customerid.equals(that.customerid) : that.customerid != null) return false;
+        if (customertypeid != null ? !customertypeid.equals(that.customertypeid) : that.customertypeid != null)
             return false;
 
         return true;
@@ -49,8 +50,28 @@ public class CustomercustomerdemoEntity {
 
     @Override
     public int hashCode() {
-        int result = customerId != null ? customerId.hashCode() : 0;
-        result = 31 * result + (customerTypeId != null ? customerTypeId.hashCode() : 0);
+        int result = customerid != null ? customerid.hashCode() : 0;
+        result = 31 * result + (customertypeid != null ? customertypeid.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "customertypeid", referencedColumnName = "customertypeid", nullable = false)
+    public CustomerdemographicsEntity getCustomerdemographicsByCustomertypeid() {
+        return customerdemographicsByCustomertypeid;
+    }
+
+    public void setCustomerdemographicsByCustomertypeid(CustomerdemographicsEntity customerdemographicsByCustomertypeid) {
+        this.customerdemographicsByCustomertypeid = customerdemographicsByCustomertypeid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "customerid", referencedColumnName = "customerid", nullable = false)
+    public CustomersEntity getCustomersByCustomerid() {
+        return customersByCustomerid;
+    }
+
+    public void setCustomersByCustomerid(CustomersEntity customersByCustomerid) {
+        this.customersByCustomerid = customersByCustomerid;
     }
 }

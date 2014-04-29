@@ -1,48 +1,48 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
 @Entity
-@Table(name = "territories")
+@Table(name = "territories", schema = "public", catalog = "northwind")
 public class TerritoriesEntity {
-    private String territoryId;
+    private String territoryid;
+    private String territorydescription;
+    private long regionid;
+    private Collection<EmployeeterritoriesEntity> employeeterritoriesesByTerritoryid;
+    private RegionEntity regionByRegionid;
 
     @Id
-    @Column(name = "`TerritoryID`", nullable = false, length = 20)
-    public String getTerritoryId() {
-        return territoryId;
+    @Column(name = "territoryid", nullable = false, insertable = true, updatable = true, length = 20)
+    public String getTerritoryid() {
+        return territoryid;
     }
 
-    public void setTerritoryId(String territoryId) {
-        this.territoryId = territoryId;
+    public void setTerritoryid(String territoryid) {
+        this.territoryid = territoryid;
     }
 
-    private String territoryDescription;
-
-    @Column(name = "`TerritoryDescription`", nullable = false)
-    public String getTerritoryDescription() {
-        return territoryDescription;
+    @Basic
+    @Column(name = "territorydescription", nullable = false, insertable = true, updatable = true, length = 50)
+    public String getTerritorydescription() {
+        return territorydescription;
     }
 
-    public void setTerritoryDescription(String territoryDescription) {
-        this.territoryDescription = territoryDescription;
+    public void setTerritorydescription(String territorydescription) {
+        this.territorydescription = territorydescription;
     }
 
-    private short regionId;
-
-    @Column(name = "`RegionID`")
-    public short getRegionId() {
-        return regionId;
+    @Basic
+    @Column(name = "regionid", nullable = false, insertable = true, updatable = true)
+    public long getRegionid() {
+        return regionid;
     }
 
-    public void setRegionId(short regionId) {
-        this.regionId = regionId;
+    public void setRegionid(long regionid) {
+        this.regionid = regionid;
     }
 
     @Override
@@ -52,19 +52,38 @@ public class TerritoriesEntity {
 
         TerritoriesEntity that = (TerritoriesEntity) o;
 
-        if (regionId != that.regionId) return false;
-        if (territoryDescription != null ? !territoryDescription.equals(that.territoryDescription) : that.territoryDescription != null)
+        if (regionid != that.regionid) return false;
+        if (territorydescription != null ? !territorydescription.equals(that.territorydescription) : that.territorydescription != null)
             return false;
-        if (territoryId != null ? !territoryId.equals(that.territoryId) : that.territoryId != null) return false;
+        if (territoryid != null ? !territoryid.equals(that.territoryid) : that.territoryid != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = territoryId != null ? territoryId.hashCode() : 0;
-        result = 31 * result + (territoryDescription != null ? territoryDescription.hashCode() : 0);
-        result = 31 * result + (int) regionId;
+        int result = territoryid != null ? territoryid.hashCode() : 0;
+        result = 31 * result + (territorydescription != null ? territorydescription.hashCode() : 0);
+        result = 31 * result + (int) (regionid ^ (regionid >>> 32));
         return result;
+    }
+
+    @OneToMany(mappedBy = "territoriesByTerritoryid")
+    public Collection<EmployeeterritoriesEntity> getEmployeeterritoriesesByTerritoryid() {
+        return employeeterritoriesesByTerritoryid;
+    }
+
+    public void setEmployeeterritoriesesByTerritoryid(Collection<EmployeeterritoriesEntity> employeeterritoriesesByTerritoryid) {
+        this.employeeterritoriesesByTerritoryid = employeeterritoriesesByTerritoryid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "regionid", referencedColumnName = "regionid", nullable = false)
+    public RegionEntity getRegionByRegionid() {
+        return regionByRegionid;
+    }
+
+    public void setRegionByRegionid(RegionEntity regionByRegionid) {
+        this.regionByRegionid = regionByRegionid;
     }
 }

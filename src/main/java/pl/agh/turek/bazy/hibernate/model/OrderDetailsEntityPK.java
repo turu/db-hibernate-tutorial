@@ -8,25 +8,27 @@ import java.io.Serializable;
  * Author: Piotr Turek
  */
 public class OrderDetailsEntityPK implements Serializable {
-    private short orderId;
-    private short productId;
+    private long orderid;
+    private long productid;
 
-@Id@Column(name = "OrderID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
-public short getOrderId() {
-    return orderId;
-}
-
-    public void setOrderId(short orderId) {
-        this.orderId = orderId;
+    @Column(name = "orderid", nullable = false, insertable = true, updatable = true)
+    @Id
+    public long getOrderid() {
+        return orderid;
     }
 
-    @Id@Column(name = "ProductID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
-    public short getProductId() {
-        return productId;
+    public void setOrderid(long orderid) {
+        this.orderid = orderid;
     }
 
-    public void setProductId(short productId) {
-        this.productId = productId;
+    @Column(name = "productid", nullable = false, insertable = true, updatable = true)
+    @Id
+    public long getProductid() {
+        return productid;
+    }
+
+    public void setProductid(long productid) {
+        this.productid = productid;
     }
 
     @Override
@@ -36,15 +38,16 @@ public short getOrderId() {
 
         OrderDetailsEntityPK that = (OrderDetailsEntityPK) o;
 
-        if (orderId != that.orderId) return false;
-        if (productId != that.productId) return false;
+        if (orderid != that.orderid) return false;
+        if (productid != that.productid) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) orderId;
-        result = 31 * result + (int) productId;
+        int result = (int) (orderid ^ (orderid >>> 32));
+        result = 31 * result + (int) (productid ^ (productid >>> 32));
         return result;
-}}
+    }
+}

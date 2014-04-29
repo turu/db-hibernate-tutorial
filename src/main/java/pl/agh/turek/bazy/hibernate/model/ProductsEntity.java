@@ -1,132 +1,125 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Basic;
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "products", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "products", schema = "public", catalog = "northwind")
 public class ProductsEntity {
-    private short productId;
+    private long productid;
+    private String productname;
+    private Long supplierid;
+    private Long categoryid;
+    private String quantityperunit;
+    private Double unitprice;
+    private Integer unitsinstock;
+    private Integer unitsonorder;
+    private Integer reorderlevel;
+    private boolean discontinued;
+    private Collection<OrderDetailsEntity> orderDetailsesByProductid;
+    private CategoriesEntity categoriesByCategoryid;
+    private SuppliersEntity suppliersBySupplierid;
 
-    @javax.persistence.Column(name = "ProductID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
     @Id
-    public short getProductId() {
-        return productId;
+    @Column(name = "productid", nullable = false, insertable = true, updatable = true)
+    public long getProductid() {
+        return productid;
     }
 
-    public void setProductId(short productId) {
-        this.productId = productId;
+    public void setProductid(long productid) {
+        this.productid = productid;
     }
 
-    private String productName;
-
-    @javax.persistence.Column(name = "ProductName", nullable = false, insertable = true, updatable = true, length = 40, precision = 0)
     @Basic
-    public String getProductName() {
-        return productName;
+    @Column(name = "productname", nullable = false, insertable = true, updatable = true, length = 40)
+    public String getProductname() {
+        return productname;
     }
 
-    public void setProductName(String productName) {
-        this.productName = productName;
+    public void setProductname(String productname) {
+        this.productname = productname;
     }
 
-    private Short supplierId;
-
-    @javax.persistence.Column(name = "SupplierID", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
     @Basic
-    public Short getSupplierId() {
-        return supplierId;
+    @Column(name = "supplierid", nullable = true, insertable = true, updatable = true)
+    public Long getSupplierid() {
+        return supplierid;
     }
 
-    public void setSupplierId(Short supplierId) {
-        this.supplierId = supplierId;
+    public void setSupplierid(Long supplierid) {
+        this.supplierid = supplierid;
     }
 
-    private Short categoryId;
-
-    @javax.persistence.Column(name = "CategoryID", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
     @Basic
-    public Short getCategoryId() {
-        return categoryId;
+    @Column(name = "categoryid", nullable = true, insertable = true, updatable = true)
+    public Long getCategoryid() {
+        return categoryid;
     }
 
-    public void setCategoryId(Short categoryId) {
-        this.categoryId = categoryId;
+    public void setCategoryid(Long categoryid) {
+        this.categoryid = categoryid;
     }
 
-    private String quantityPerUnit;
-
-    @javax.persistence.Column(name = "QuantityPerUnit", nullable = true, insertable = true, updatable = true, length = 20, precision = 0)
     @Basic
-    public String getQuantityPerUnit() {
-        return quantityPerUnit;
+    @Column(name = "quantityperunit", nullable = true, insertable = true, updatable = true, length = 20)
+    public String getQuantityperunit() {
+        return quantityperunit;
     }
 
-    public void setQuantityPerUnit(String quantityPerUnit) {
-        this.quantityPerUnit = quantityPerUnit;
+    public void setQuantityperunit(String quantityperunit) {
+        this.quantityperunit = quantityperunit;
     }
 
-    private Float unitPrice;
-
-    @javax.persistence.Column(name = "UnitPrice", nullable = true, insertable = true, updatable = true, length = 8, precision = 8)
     @Basic
-    public Float getUnitPrice() {
-        return unitPrice;
+    @Column(name = "unitprice", nullable = true, insertable = true, updatable = true, precision = 17)
+    public Double getUnitprice() {
+        return unitprice;
     }
 
-    public void setUnitPrice(Float unitPrice) {
-        this.unitPrice = unitPrice;
+    public void setUnitprice(Double unitprice) {
+        this.unitprice = unitprice;
     }
 
-    private Short unitsInStock;
-
-    @javax.persistence.Column(name = "UnitsInStock", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
     @Basic
-    public Short getUnitsInStock() {
-        return unitsInStock;
+    @Column(name = "unitsinstock", nullable = true, insertable = true, updatable = true)
+    public Integer getUnitsinstock() {
+        return unitsinstock;
     }
 
-    public void setUnitsInStock(Short unitsInStock) {
-        this.unitsInStock = unitsInStock;
+    public void setUnitsinstock(Integer unitsinstock) {
+        this.unitsinstock = unitsinstock;
     }
 
-    private Short unitsOnOrder;
-
-    @javax.persistence.Column(name = "UnitsOnOrder", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
     @Basic
-    public Short getUnitsOnOrder() {
-        return unitsOnOrder;
+    @Column(name = "unitsonorder", nullable = true, insertable = true, updatable = true)
+    public Integer getUnitsonorder() {
+        return unitsonorder;
     }
 
-    public void setUnitsOnOrder(Short unitsOnOrder) {
-        this.unitsOnOrder = unitsOnOrder;
+    public void setUnitsonorder(Integer unitsonorder) {
+        this.unitsonorder = unitsonorder;
     }
 
-    private Short reorderLevel;
-
-    @javax.persistence.Column(name = "ReorderLevel", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
     @Basic
-    public Short getReorderLevel() {
-        return reorderLevel;
+    @Column(name = "reorderlevel", nullable = true, insertable = true, updatable = true)
+    public Integer getReorderlevel() {
+        return reorderlevel;
     }
 
-    public void setReorderLevel(Short reorderLevel) {
-        this.reorderLevel = reorderLevel;
+    public void setReorderlevel(Integer reorderlevel) {
+        this.reorderlevel = reorderlevel;
     }
 
-    private int discontinued;
-
-    @javax.persistence.Column(name = "Discontinued", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
     @Basic
-    public int getDiscontinued() {
+    @Column(name = "discontinued", nullable = false, insertable = true, updatable = true)
+    public boolean isDiscontinued() {
         return discontinued;
     }
 
-    public void setDiscontinued(int discontinued) {
+    public void setDiscontinued(boolean discontinued) {
         this.discontinued = discontinued;
     }
 
@@ -138,32 +131,61 @@ public class ProductsEntity {
         ProductsEntity that = (ProductsEntity) o;
 
         if (discontinued != that.discontinued) return false;
-        if (productId != that.productId) return false;
-        if (categoryId != null ? !categoryId.equals(that.categoryId) : that.categoryId != null) return false;
-        if (productName != null ? !productName.equals(that.productName) : that.productName != null) return false;
-        if (quantityPerUnit != null ? !quantityPerUnit.equals(that.quantityPerUnit) : that.quantityPerUnit != null)
+        if (productid != that.productid) return false;
+        if (categoryid != null ? !categoryid.equals(that.categoryid) : that.categoryid != null) return false;
+        if (productname != null ? !productname.equals(that.productname) : that.productname != null) return false;
+        if (quantityperunit != null ? !quantityperunit.equals(that.quantityperunit) : that.quantityperunit != null)
             return false;
-        if (reorderLevel != null ? !reorderLevel.equals(that.reorderLevel) : that.reorderLevel != null) return false;
-        if (supplierId != null ? !supplierId.equals(that.supplierId) : that.supplierId != null) return false;
-        if (unitPrice != null ? !unitPrice.equals(that.unitPrice) : that.unitPrice != null) return false;
-        if (unitsInStock != null ? !unitsInStock.equals(that.unitsInStock) : that.unitsInStock != null) return false;
-        if (unitsOnOrder != null ? !unitsOnOrder.equals(that.unitsOnOrder) : that.unitsOnOrder != null) return false;
+        if (reorderlevel != null ? !reorderlevel.equals(that.reorderlevel) : that.reorderlevel != null) return false;
+        if (supplierid != null ? !supplierid.equals(that.supplierid) : that.supplierid != null) return false;
+        if (unitprice != null ? !unitprice.equals(that.unitprice) : that.unitprice != null) return false;
+        if (unitsinstock != null ? !unitsinstock.equals(that.unitsinstock) : that.unitsinstock != null) return false;
+        if (unitsonorder != null ? !unitsonorder.equals(that.unitsonorder) : that.unitsonorder != null) return false;
 
         return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) productId;
-        result = 31 * result + (productName != null ? productName.hashCode() : 0);
-        result = 31 * result + (supplierId != null ? supplierId.hashCode() : 0);
-        result = 31 * result + (categoryId != null ? categoryId.hashCode() : 0);
-        result = 31 * result + (quantityPerUnit != null ? quantityPerUnit.hashCode() : 0);
-        result = 31 * result + (unitPrice != null ? unitPrice.hashCode() : 0);
-        result = 31 * result + (unitsInStock != null ? unitsInStock.hashCode() : 0);
-        result = 31 * result + (unitsOnOrder != null ? unitsOnOrder.hashCode() : 0);
-        result = 31 * result + (reorderLevel != null ? reorderLevel.hashCode() : 0);
-        result = 31 * result + discontinued;
+        int result = (int) (productid ^ (productid >>> 32));
+        result = 31 * result + (productname != null ? productname.hashCode() : 0);
+        result = 31 * result + (supplierid != null ? supplierid.hashCode() : 0);
+        result = 31 * result + (categoryid != null ? categoryid.hashCode() : 0);
+        result = 31 * result + (quantityperunit != null ? quantityperunit.hashCode() : 0);
+        result = 31 * result + (unitprice != null ? unitprice.hashCode() : 0);
+        result = 31 * result + (unitsinstock != null ? unitsinstock.hashCode() : 0);
+        result = 31 * result + (unitsonorder != null ? unitsonorder.hashCode() : 0);
+        result = 31 * result + (reorderlevel != null ? reorderlevel.hashCode() : 0);
+        result = 31 * result + (discontinued ? 1 : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "productsByProductid")
+    public Collection<OrderDetailsEntity> getOrderDetailsesByProductid() {
+        return orderDetailsesByProductid;
+    }
+
+    public void setOrderDetailsesByProductid(Collection<OrderDetailsEntity> orderDetailsesByProductid) {
+        this.orderDetailsesByProductid = orderDetailsesByProductid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "categoryid", referencedColumnName = "categoryid")
+    public CategoriesEntity getCategoriesByCategoryid() {
+        return categoriesByCategoryid;
+    }
+
+    public void setCategoriesByCategoryid(CategoriesEntity categoriesByCategoryid) {
+        this.categoriesByCategoryid = categoriesByCategoryid;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "supplierid", referencedColumnName = "supplierid")
+    public SuppliersEntity getSuppliersBySupplierid() {
+        return suppliersBySupplierid;
+    }
+
+    public void setSuppliersBySupplierid(SuppliersEntity suppliersBySupplierid) {
+        this.suppliersBySupplierid = suppliersBySupplierid;
     }
 }

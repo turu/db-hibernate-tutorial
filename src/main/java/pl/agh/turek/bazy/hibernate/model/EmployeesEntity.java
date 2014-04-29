@@ -1,55 +1,71 @@
 package pl.agh.turek.bazy.hibernate.model;
 
-import javax.persistence.Entity;
+import javax.persistence.*;
 import java.sql.Date;
 import java.util.Arrays;
+import java.util.Collection;
 
 /**
  * Author: Piotr Turek
  */
-@javax.persistence.Table(name = "employees", schema = "public", catalog = "northwind")
 @Entity
+@Table(name = "employees", schema = "public", catalog = "northwind")
 public class EmployeesEntity {
-    private short employeeId;
-
-    @javax.persistence.Column(name = "EmployeeID", nullable = false, insertable = true, updatable = true, length = 5, precision = 0)
-    @javax.persistence.Id
-    public short getEmployeeId() {
-        return employeeId;
-    }
-
-    public void setEmployeeId(short employeeId) {
-        this.employeeId = employeeId;
-    }
-
-    private String lastName;
-
-    @javax.persistence.Column(name = "LastName", nullable = false, insertable = true, updatable = true, length = 20, precision = 0)
-    @javax.persistence.Basic
-    public String getLastName() {
-        return lastName;
-    }
-
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
-    }
-
-    private String firstName;
-
-    @javax.persistence.Column(name = "FirstName", nullable = false, insertable = true, updatable = true, length = 10, precision = 0)
-    @javax.persistence.Basic
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public void setFirstName(String firstName) {
-        this.firstName = firstName;
-    }
-
+    private long employeeid;
+    private String lastname;
+    private String firstname;
     private String title;
+    private String titleofcourtesy;
+    private Date birthdate;
+    private Date hiredate;
+    private String address;
+    private String city;
+    private String region;
+    private String postalcode;
+    private String country;
+    private String homephone;
+    private String extension;
+    private byte[] photo;
+    private String notes;
+    private Long reportsto;
+    private String photopath;
+    private EmployeesEntity employeesByReportsto;
+    private Collection<EmployeesEntity> employeesesByEmployeeid;
+    private Collection<EmployeeterritoriesEntity> employeeterritoriesesByEmployeeid;
+    private Collection<OrdersEntity> ordersesByEmployeeid;
 
-    @javax.persistence.Column(name = "Title", nullable = true, insertable = true, updatable = true, length = 30, precision = 0)
-    @javax.persistence.Basic
+    @Id
+    @Column(name = "employeeid", nullable = false, insertable = true, updatable = true)
+    public long getEmployeeid() {
+        return employeeid;
+    }
+
+    public void setEmployeeid(long employeeid) {
+        this.employeeid = employeeid;
+    }
+
+    @Basic
+    @Column(name = "lastname", nullable = false, insertable = true, updatable = true, length = 20)
+    public String getLastname() {
+        return lastname;
+    }
+
+    public void setLastname(String lastname) {
+        this.lastname = lastname;
+    }
+
+    @Basic
+    @Column(name = "firstname", nullable = false, insertable = true, updatable = true, length = 10)
+    public String getFirstname() {
+        return firstname;
+    }
+
+    public void setFirstname(String firstname) {
+        this.firstname = firstname;
+    }
+
+    @Basic
+    @Column(name = "title", nullable = true, insertable = true, updatable = true, length = 30)
     public String getTitle() {
         return title;
     }
@@ -58,46 +74,38 @@ public class EmployeesEntity {
         this.title = title;
     }
 
-    private String titleOfCourtesy;
-
-    @javax.persistence.Column(name = "TitleOfCourtesy", nullable = true, insertable = true, updatable = true, length = 25, precision = 0)
-    @javax.persistence.Basic
-    public String getTitleOfCourtesy() {
-        return titleOfCourtesy;
+    @Basic
+    @Column(name = "titleofcourtesy", nullable = true, insertable = true, updatable = true, length = 25)
+    public String getTitleofcourtesy() {
+        return titleofcourtesy;
     }
 
-    public void setTitleOfCourtesy(String titleOfCourtesy) {
-        this.titleOfCourtesy = titleOfCourtesy;
+    public void setTitleofcourtesy(String titleofcourtesy) {
+        this.titleofcourtesy = titleofcourtesy;
     }
 
-    private Date birthDate;
-
-    @javax.persistence.Column(name = "BirthDate", nullable = true, insertable = true, updatable = true, length = 13, precision = 0)
-    @javax.persistence.Basic
-    public Date getBirthDate() {
-        return birthDate;
+    @Basic
+    @Column(name = "birthdate", nullable = true, insertable = true, updatable = true)
+    public Date getBirthdate() {
+        return birthdate;
     }
 
-    public void setBirthDate(Date birthDate) {
-        this.birthDate = birthDate;
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
     }
 
-    private Date hireDate;
-
-    @javax.persistence.Column(name = "HireDate", nullable = true, insertable = true, updatable = true, length = 13, precision = 0)
-    @javax.persistence.Basic
-    public Date getHireDate() {
-        return hireDate;
+    @Basic
+    @Column(name = "hiredate", nullable = true, insertable = true, updatable = true)
+    public Date getHiredate() {
+        return hiredate;
     }
 
-    public void setHireDate(Date hireDate) {
-        this.hireDate = hireDate;
+    public void setHiredate(Date hiredate) {
+        this.hiredate = hiredate;
     }
 
-    private String address;
-
-    @javax.persistence.Column(name = "Address", nullable = true, insertable = true, updatable = true, length = 60, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "address", nullable = true, insertable = true, updatable = true, length = 60)
     public String getAddress() {
         return address;
     }
@@ -106,10 +114,8 @@ public class EmployeesEntity {
         this.address = address;
     }
 
-    private String city;
-
-    @javax.persistence.Column(name = "City", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "city", nullable = true, insertable = true, updatable = true, length = 15)
     public String getCity() {
         return city;
     }
@@ -118,10 +124,8 @@ public class EmployeesEntity {
         this.city = city;
     }
 
-    private String region;
-
-    @javax.persistence.Column(name = "Region", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "region", nullable = true, insertable = true, updatable = true, length = 15)
     public String getRegion() {
         return region;
     }
@@ -130,22 +134,18 @@ public class EmployeesEntity {
         this.region = region;
     }
 
-    private String postalCode;
-
-    @javax.persistence.Column(name = "PostalCode", nullable = true, insertable = true, updatable = true, length = 10, precision = 0)
-    @javax.persistence.Basic
-    public String getPostalCode() {
-        return postalCode;
+    @Basic
+    @Column(name = "postalcode", nullable = true, insertable = true, updatable = true, length = 10)
+    public String getPostalcode() {
+        return postalcode;
     }
 
-    public void setPostalCode(String postalCode) {
-        this.postalCode = postalCode;
+    public void setPostalcode(String postalcode) {
+        this.postalcode = postalcode;
     }
 
-    private String country;
-
-    @javax.persistence.Column(name = "Country", nullable = true, insertable = true, updatable = true, length = 15, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "country", nullable = true, insertable = true, updatable = true, length = 15)
     public String getCountry() {
         return country;
     }
@@ -154,22 +154,18 @@ public class EmployeesEntity {
         this.country = country;
     }
 
-    private String homePhone;
-
-    @javax.persistence.Column(name = "HomePhone", nullable = true, insertable = true, updatable = true, length = 24, precision = 0)
-    @javax.persistence.Basic
-    public String getHomePhone() {
-        return homePhone;
+    @Basic
+    @Column(name = "homephone", nullable = true, insertable = true, updatable = true, length = 24)
+    public String getHomephone() {
+        return homephone;
     }
 
-    public void setHomePhone(String homePhone) {
-        this.homePhone = homePhone;
+    public void setHomephone(String homephone) {
+        this.homephone = homephone;
     }
 
-    private String extension;
-
-    @javax.persistence.Column(name = "Extension", nullable = true, insertable = true, updatable = true, length = 4, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "extension", nullable = true, insertable = true, updatable = true, length = 4)
     public String getExtension() {
         return extension;
     }
@@ -178,10 +174,8 @@ public class EmployeesEntity {
         this.extension = extension;
     }
 
-    private byte[] photo;
-
-    @javax.persistence.Column(name = "Photo", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "photo", nullable = true, insertable = true, updatable = true)
     public byte[] getPhoto() {
         return photo;
     }
@@ -190,10 +184,8 @@ public class EmployeesEntity {
         this.photo = photo;
     }
 
-    private String notes;
-
-    @javax.persistence.Column(name = "Notes", nullable = true, insertable = true, updatable = true, length = 2147483647, precision = 0)
-    @javax.persistence.Basic
+    @Basic
+    @Column(name = "notes", nullable = true, insertable = true, updatable = true, length = 10000)
     public String getNotes() {
         return notes;
     }
@@ -202,28 +194,24 @@ public class EmployeesEntity {
         this.notes = notes;
     }
 
-    private Short reportsTo;
-
-    @javax.persistence.Column(name = "ReportsTo", nullable = true, insertable = true, updatable = true, length = 5, precision = 0)
-    @javax.persistence.Basic
-    public Short getReportsTo() {
-        return reportsTo;
+    @Basic
+    @Column(name = "reportsto", nullable = true, insertable = true, updatable = true)
+    public Long getReportsto() {
+        return reportsto;
     }
 
-    public void setReportsTo(Short reportsTo) {
-        this.reportsTo = reportsTo;
+    public void setReportsto(Long reportsto) {
+        this.reportsto = reportsto;
     }
 
-    private String photoPath;
-
-    @javax.persistence.Column(name = "PhotoPath", nullable = true, insertable = true, updatable = true, length = 255, precision = 0)
-    @javax.persistence.Basic
-    public String getPhotoPath() {
-        return photoPath;
+    @Basic
+    @Column(name = "photopath", nullable = true, insertable = true, updatable = true, length = 255)
+    public String getPhotopath() {
+        return photopath;
     }
 
-    public void setPhotoPath(String photoPath) {
-        this.photoPath = photoPath;
+    public void setPhotopath(String photopath) {
+        this.photopath = photopath;
     }
 
     @Override
@@ -233,47 +221,86 @@ public class EmployeesEntity {
 
         EmployeesEntity that = (EmployeesEntity) o;
 
-        if (employeeId != that.employeeId) return false;
+        if (employeeid != that.employeeid) return false;
         if (address != null ? !address.equals(that.address) : that.address != null) return false;
-        if (birthDate != null ? !birthDate.equals(that.birthDate) : that.birthDate != null) return false;
+        if (birthdate != null ? !birthdate.equals(that.birthdate) : that.birthdate != null) return false;
         if (city != null ? !city.equals(that.city) : that.city != null) return false;
         if (country != null ? !country.equals(that.country) : that.country != null) return false;
         if (extension != null ? !extension.equals(that.extension) : that.extension != null) return false;
-        if (firstName != null ? !firstName.equals(that.firstName) : that.firstName != null) return false;
-        if (hireDate != null ? !hireDate.equals(that.hireDate) : that.hireDate != null) return false;
-        if (homePhone != null ? !homePhone.equals(that.homePhone) : that.homePhone != null) return false;
-        if (lastName != null ? !lastName.equals(that.lastName) : that.lastName != null) return false;
+        if (firstname != null ? !firstname.equals(that.firstname) : that.firstname != null) return false;
+        if (hiredate != null ? !hiredate.equals(that.hiredate) : that.hiredate != null) return false;
+        if (homephone != null ? !homephone.equals(that.homephone) : that.homephone != null) return false;
+        if (lastname != null ? !lastname.equals(that.lastname) : that.lastname != null) return false;
         if (notes != null ? !notes.equals(that.notes) : that.notes != null) return false;
         if (!Arrays.equals(photo, that.photo)) return false;
-        if (photoPath != null ? !photoPath.equals(that.photoPath) : that.photoPath != null) return false;
-        if (postalCode != null ? !postalCode.equals(that.postalCode) : that.postalCode != null) return false;
+        if (photopath != null ? !photopath.equals(that.photopath) : that.photopath != null) return false;
+        if (postalcode != null ? !postalcode.equals(that.postalcode) : that.postalcode != null) return false;
         if (region != null ? !region.equals(that.region) : that.region != null) return false;
-        if (reportsTo != null ? !reportsTo.equals(that.reportsTo) : that.reportsTo != null) return false;
+        if (reportsto != null ? !reportsto.equals(that.reportsto) : that.reportsto != null) return false;
         if (title != null ? !title.equals(that.title) : that.title != null) return false;
-        return !(titleOfCourtesy != null ? !titleOfCourtesy.equals(that.titleOfCourtesy) : that.titleOfCourtesy != null);
+        if (titleofcourtesy != null ? !titleofcourtesy.equals(that.titleofcourtesy) : that.titleofcourtesy != null)
+            return false;
 
+        return true;
     }
 
     @Override
     public int hashCode() {
-        int result = (int) employeeId;
-        result = 31 * result + (lastName != null ? lastName.hashCode() : 0);
-        result = 31 * result + (firstName != null ? firstName.hashCode() : 0);
+        int result = (int) (employeeid ^ (employeeid >>> 32));
+        result = 31 * result + (lastname != null ? lastname.hashCode() : 0);
+        result = 31 * result + (firstname != null ? firstname.hashCode() : 0);
         result = 31 * result + (title != null ? title.hashCode() : 0);
-        result = 31 * result + (titleOfCourtesy != null ? titleOfCourtesy.hashCode() : 0);
-        result = 31 * result + (birthDate != null ? birthDate.hashCode() : 0);
-        result = 31 * result + (hireDate != null ? hireDate.hashCode() : 0);
+        result = 31 * result + (titleofcourtesy != null ? titleofcourtesy.hashCode() : 0);
+        result = 31 * result + (birthdate != null ? birthdate.hashCode() : 0);
+        result = 31 * result + (hiredate != null ? hiredate.hashCode() : 0);
         result = 31 * result + (address != null ? address.hashCode() : 0);
         result = 31 * result + (city != null ? city.hashCode() : 0);
         result = 31 * result + (region != null ? region.hashCode() : 0);
-        result = 31 * result + (postalCode != null ? postalCode.hashCode() : 0);
+        result = 31 * result + (postalcode != null ? postalcode.hashCode() : 0);
         result = 31 * result + (country != null ? country.hashCode() : 0);
-        result = 31 * result + (homePhone != null ? homePhone.hashCode() : 0);
+        result = 31 * result + (homephone != null ? homephone.hashCode() : 0);
         result = 31 * result + (extension != null ? extension.hashCode() : 0);
         result = 31 * result + (photo != null ? Arrays.hashCode(photo) : 0);
         result = 31 * result + (notes != null ? notes.hashCode() : 0);
-        result = 31 * result + (reportsTo != null ? reportsTo.hashCode() : 0);
-        result = 31 * result + (photoPath != null ? photoPath.hashCode() : 0);
+        result = 31 * result + (reportsto != null ? reportsto.hashCode() : 0);
+        result = 31 * result + (photopath != null ? photopath.hashCode() : 0);
         return result;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "reportsto", referencedColumnName = "employeeid")
+    public EmployeesEntity getEmployeesByReportsto() {
+        return employeesByReportsto;
+    }
+
+    public void setEmployeesByReportsto(EmployeesEntity employeesByReportsto) {
+        this.employeesByReportsto = employeesByReportsto;
+    }
+
+    @OneToMany(mappedBy = "employeesByReportsto")
+    public Collection<EmployeesEntity> getEmployeesesByEmployeeid() {
+        return employeesesByEmployeeid;
+    }
+
+    public void setEmployeesesByEmployeeid(Collection<EmployeesEntity> employeesesByEmployeeid) {
+        this.employeesesByEmployeeid = employeesesByEmployeeid;
+    }
+
+    @OneToMany(mappedBy = "employeesByEmployeeid")
+    public Collection<EmployeeterritoriesEntity> getEmployeeterritoriesesByEmployeeid() {
+        return employeeterritoriesesByEmployeeid;
+    }
+
+    public void setEmployeeterritoriesesByEmployeeid(Collection<EmployeeterritoriesEntity> employeeterritoriesesByEmployeeid) {
+        this.employeeterritoriesesByEmployeeid = employeeterritoriesesByEmployeeid;
+    }
+
+    @OneToMany(mappedBy = "employeesByEmployeeid")
+    public Collection<OrdersEntity> getOrdersesByEmployeeid() {
+        return ordersesByEmployeeid;
+    }
+
+    public void setOrdersesByEmployeeid(Collection<OrdersEntity> ordersesByEmployeeid) {
+        this.ordersesByEmployeeid = ordersesByEmployeeid;
     }
 }
