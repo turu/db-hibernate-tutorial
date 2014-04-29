@@ -18,18 +18,18 @@ public class DAOCaseRunner {
         TerritoriesDao territoriesDao = (TerritoriesDao) ctx.getBean("territoriesDao");
 
         TerritoriesEntity exampleEntity = new TerritoriesEntity();
-        exampleEntity.setTerritoryId("Example");
-        exampleEntity.setTerritoryDescription("This is Example");
+        exampleEntity.setTerritoryid("Example");
+        exampleEntity.setTerritorydescription("This is Example");
 
         territoriesDao.create(exampleEntity);
         TerritoriesEntity foundEntity = territoriesDao.get("Example");
-        System.out.println(foundEntity.getTerritoryDescription());
+        System.out.println(foundEntity.getTerritorydescription());
 
-        exampleEntity.setTerritoryDescription("This is still Example");
+        exampleEntity.setTerritorydescription("This is still Example");
 
         territoriesDao.update(exampleEntity);
         foundEntity = territoriesDao.get("Example");
-        System.out.println(foundEntity.getTerritoryDescription());
+        System.out.println(foundEntity.getTerritorydescription());
 
         territoriesDao.delete(exampleEntity);
         foundEntity = territoriesDao.get("Example");

@@ -21,21 +21,21 @@ public class SessionMethodsCaseRunner {
         Session session = sessionFactory.openSession();
 
         TerritoriesEntity exampleEntity = new TerritoriesEntity();
-        exampleEntity.setTerritoryId("Example");
-        exampleEntity.setTerritoryDescription("This is Example");
+        exampleEntity.setTerritoryid("Example");
+        exampleEntity.setTerritorydescription("This is Example");
 
         session.save(exampleEntity);
         session.flush();
         TerritoriesEntity foundEntity = (TerritoriesEntity) session.get(
                 TerritoriesEntity.class, "Example");
-        System.out.println(foundEntity.getTerritoryDescription());
+        System.out.println(foundEntity.getTerritorydescription());
 
-        exampleEntity.setTerritoryDescription("This is still Example");
+        exampleEntity.setTerritorydescription("This is still Example");
 
         session.update(exampleEntity);
         session.flush();
         foundEntity = (TerritoriesEntity) session.get(TerritoriesEntity.class, "Example");
-        System.out.println(foundEntity.getTerritoryDescription());
+        System.out.println(foundEntity.getTerritorydescription());
 
         session.delete(exampleEntity);
         session.flush();

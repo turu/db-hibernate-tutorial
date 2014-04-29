@@ -24,8 +24,8 @@ public class ObjectStatesCaseRunner {
          * Creating new object produces a transient object
          */
         TerritoriesEntity transientObject = new TerritoriesEntity();
-        transientObject.setTerritoryId("Transient");
-        transientObject.setTerritoryDescription("This is transient");
+        transientObject.setTerritoryid("Transient");
+        transientObject.setTerritorydescription("This is transient");
 
         /**
          * We wont receive any result - transient object is not persisted
@@ -45,7 +45,7 @@ public class ObjectStatesCaseRunner {
         session.flush();
         TerritoriesEntity persistentEntity =  (TerritoriesEntity) session.get(
                 TerritoriesEntity.class,"Transient");
-        System.out.println(persistentEntity.getTerritoryDescription());
+        System.out.println(persistentEntity.getTerritorydescription());
         /**
          * What happens on subsequent runner execution?
          * Why you need: session.delete(transientObject);session.flush();
@@ -60,8 +60,8 @@ public class ObjectStatesCaseRunner {
          */
         session.close();
         TerritoriesEntity detachedEntity = persistentEntity;
-        persistentEntity.setTerritoryDescription("This is detached");
-        System.out.println(detachedEntity.getTerritoryDescription());
+        persistentEntity.setTerritorydescription("This is detached");
+        System.out.println(detachedEntity.getTerritorydescription());
     }
 
 
