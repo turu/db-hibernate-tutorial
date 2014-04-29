@@ -11,7 +11,7 @@ import java.util.Collection;
 public class TerritoriesEntity {
     private String territoryid;
     private String territorydescription;
-    private long regionid;
+    private Long regionid;
     private Collection<EmployeeterritoriesEntity> employeeterritoriesesByTerritoryid;
     private RegionEntity regionByRegionid;
 
@@ -36,12 +36,12 @@ public class TerritoriesEntity {
     }
 
     @Basic
-    @Column(name = "regionid", nullable = false, insertable = false, updatable = false)
-    public long getRegionid() {
+    @Column(name = "regionid", insertable = false, updatable = false)
+    public Long getRegionid() {
         return regionid;
     }
 
-    public void setRegionid(long regionid) {
+    public void setRegionid(Long regionid) {
         this.regionid = regionid;
     }
 
