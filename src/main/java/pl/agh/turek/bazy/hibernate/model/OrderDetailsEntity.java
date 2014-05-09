@@ -98,7 +98,7 @@ public class OrderDetailsEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "orderid", referencedColumnName = "orderid", nullable = false)
+    @JoinColumn(name = "orderid", referencedColumnName = "orderid", nullable = false, insertable = false, updatable = false)
     public OrdersEntity getOrdersByOrderid() {
         return ordersByOrderid;
     }
@@ -108,7 +108,7 @@ public class OrderDetailsEntity {
     }
 
     @ManyToOne
-    @JoinColumn(name = "productid", referencedColumnName = "productid", nullable = false)
+    @JoinColumn(name = "productid", referencedColumnName = "productid", nullable = false, insertable = false, updatable = false)
     public ProductsEntity getProductsByProductid() {
         return productsByProductid;
     }
