@@ -30,6 +30,8 @@ public class OrdersEntityFactory {
         ShippersEntity shipper = (ShippersEntity) getRandomObject(ShippersEntity.class, session);
         entity.setShipvia(shipper.getShipperid());
 
+        session.close();
+
         entity.setFreight((System.nanoTime() % 100) / 731.);
         entity.setShipaddress("Burgerhoff " + System.nanoTime() % 100);
         entity.setShipname("Prince Aloff " + System.nanoTime() % 100);
@@ -41,13 +43,7 @@ public class OrdersEntityFactory {
         entity.setOrderdate(getCurrentDateShifted(0));
         entity.setRequireddate(getCurrentDateShifted(900000000));
 
-        session.save(entity);
-        session.flush();
-        System.out.println(entity);
-        session.delete(entity);
-        session.flush();
-        session.close();
-        return null;
+        return entity;
     }
 
     private Date getCurrentDateShifted(long miliDiff) {
