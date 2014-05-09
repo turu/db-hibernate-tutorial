@@ -10,7 +10,7 @@ import java.util.Collection;
 @Entity
 @Table(name = "orders", schema = "public", catalog = "northwind")
 public class OrdersEntity {
-    private long orderid;
+    private Long orderid;
     private String customerid;
     private Long employeeid;
     private Date orderdate;
@@ -30,8 +30,9 @@ public class OrdersEntity {
     private ShippersEntity shippersByShipvia;
 
     @Id
+    @GeneratedValue
     @Column(name = "orderid", nullable = false, insertable = true, updatable = true)
-    public long getOrderid() {
+    public Long getOrderid() {
         return orderid;
     }
 
@@ -247,6 +248,30 @@ public class OrdersEntity {
     @JoinColumn(name = "shipvia", referencedColumnName = "shipperid")
     public ShippersEntity getShippersByShipvia() {
         return shippersByShipvia;
+    }
+
+    @Override
+    public String toString() {
+        return "OrdersEntity{" +
+                "orderid=" + orderid +
+                ", customerid='" + customerid + '\'' +
+                ", employeeid=" + employeeid +
+                ", orderdate=" + orderdate +
+                ", requireddate=" + requireddate +
+                ", shippeddate=" + shippeddate +
+                ", shipvia=" + shipvia +
+                ", freight=" + freight +
+                ", shipname='" + shipname + '\'' +
+                ", shipaddress='" + shipaddress + '\'' +
+                ", shipcity='" + shipcity + '\'' +
+                ", shipregion='" + shipregion + '\'' +
+                ", shippostalcode='" + shippostalcode + '\'' +
+                ", shipcountry='" + shipcountry + '\'' +
+                ", orderDetailsesByOrderid=" + orderDetailsesByOrderid +
+                ", customersByCustomerid=" + customersByCustomerid +
+                ", employeesByEmployeeid=" + employeesByEmployeeid +
+                ", shippersByShipvia=" + shippersByShipvia +
+                '}';
     }
 
     public void setShippersByShipvia(ShippersEntity shippersByShipvia) {
