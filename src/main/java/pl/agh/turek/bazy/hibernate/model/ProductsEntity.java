@@ -1,5 +1,8 @@
 package pl.agh.turek.bazy.hibernate.model;
 
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 import java.util.Collection;
 
@@ -7,6 +10,8 @@ import java.util.Collection;
  * Author: Piotr Turek
  */
 @Entity
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
 @Table(name = "products", schema = "public", catalog = "northwind")
 public class ProductsEntity {
     private long productid;
