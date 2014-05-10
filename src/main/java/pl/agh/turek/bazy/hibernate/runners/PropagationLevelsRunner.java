@@ -26,7 +26,7 @@ public class PropagationLevelsRunner {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
         SessionFactory sessionFactory = (SessionFactory) ctx.getBean("sessionFactory");
         sessionFactory.openSession();//todo is really needed?
-        new PropagationLevelsRunner().run();
+        ((PropagationLevelsRunner) ctx.getBean("propagationLevelsRunner")).run();
     }
 
     private void run() throws InterruptedException {
@@ -38,7 +38,7 @@ public class PropagationLevelsRunner {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
         final OrdersDao ordersDao = (OrdersDao) ctx.getBean("ordersDao");
         final OrderDetailsDao orderDetailsDao = (OrderDetailsDao) ctx.getBean("orderDetailsDao");
-        OrdersEntityFactory ordersEntityFactory = ( OrdersEntityFactory) ctx.getBean("ordersEntityFactory");
+        OrdersEntityFactory ordersEntityFactory = (OrdersEntityFactory) ctx.getBean("ordersEntityFactory");
 
         printTotalValueStatistic(orderDetailsDao, ordersDao);//before
         OrdersEntity randomOrder = ordersEntityFactory.createRandomOrder();
@@ -50,6 +50,7 @@ public class PropagationLevelsRunner {
         orderDetailsDao.create(detailsEntity);
         printTotalValueStatistic(orderDetailsDao, ordersDao);//after
     }
+
     @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void printTotalValueStatistic(OrderDetailsDao orderDetailsDao, OrdersDao ordersDao) {
         double total = 0.;
