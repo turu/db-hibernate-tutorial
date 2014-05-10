@@ -18,7 +18,12 @@ public class OrdersEntityFactory {
     private SessionFactory sessionFactory;
 
     public OrdersEntity createRandomOrder() {
-        Session session = sessionFactory.getCurrentSession();
+        Session session;
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (Exception e) {
+            session = sessionFactory.openSession();
+        }
         OrdersEntity entity = new OrdersEntity();
 
         EmployeesEntity employee = (EmployeesEntity) RandomObjectFetcher.get(EmployeesEntity.class, session);
