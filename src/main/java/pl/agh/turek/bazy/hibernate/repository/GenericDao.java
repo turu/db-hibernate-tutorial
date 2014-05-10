@@ -39,6 +39,7 @@ public class GenericDao<T, PK extends Serializable> implements Dao<T, PK> {
     public PK create(T o) {
         Session session = getSession();
         Serializable pk = session.save(o);
+        session.flush();
         return (PK) pk;
     }
 

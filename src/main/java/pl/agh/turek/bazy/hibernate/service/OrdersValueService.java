@@ -20,7 +20,7 @@ public class OrdersValueService {
     @Autowired
     private OrdersDao ordersDao;
 
-    @Transactional(propagation = Propagation.REQUIRED, isolation = Isolation.SERIALIZABLE)
+    @Transactional(propagation = Propagation.REQUIRES_NEW, isolation = Isolation.SERIALIZABLE)
     public void printTotalValueStatistic() {
         double total = 0.;
         for (OrderDetailsEntity detail : this.orderDetailsDao.getAll()) {

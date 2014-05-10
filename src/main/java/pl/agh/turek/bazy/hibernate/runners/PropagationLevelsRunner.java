@@ -44,7 +44,6 @@ public class PropagationLevelsRunner {
         detailsEntity.setOrderid(randomOrder.getOrderid());
         setOtherOrderDeatilsFields(orderDetailsDao, detailsEntity);
         orderDetailsDao.create(detailsEntity);
-        ordersValueService.printTotalValueStatistic(); //after
     }
 
     private void setOtherOrderDeatilsFields(OrderDetailsDao orderDetailsDao, OrderDetailsEntity detailsEntity) {
@@ -57,7 +56,9 @@ public class PropagationLevelsRunner {
 
     public static void main(String[] args) throws InterruptedException {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
+        ((OrdersValueService)ctx.getBean("ordersValueService")).printTotalValueStatistic(); //before
         ((PropagationLevelsRunner) ctx.getBean("propagationLevelsRunner")).run();
+        ((OrdersValueService)ctx.getBean("ordersValueService")).printTotalValueStatistic(); //after
     }
 
 
