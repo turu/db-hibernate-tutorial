@@ -18,7 +18,12 @@ public class OrdersEntityFactory {
     private SessionFactory sessionFactory;
 
     public OrdersEntity createRandomOrder() {
-        Session session = sessionFactory.openSession();
+        Session session;
+        try {
+            session = sessionFactory.getCurrentSession();
+        } catch (Exception e) {
+            session = sessionFactory.openSession();
+        }
         OrdersEntity entity = new OrdersEntity();
 
         EmployeesEntity employee = (EmployeesEntity) RandomObjectFetcher.get(EmployeesEntity.class, session);
@@ -27,8 +32,6 @@ public class OrdersEntityFactory {
         entity.setCustomerid(customer.getCustomerid());
         ShippersEntity shipper = (ShippersEntity) RandomObjectFetcher.get(ShippersEntity.class, session);
         entity.setShipvia(shipper.getShipperid());
-
-        session.close();
 
         entity.setFreight((System.nanoTime() % 100) / 731.);
         entity.setShipaddress("Burgerhoff " + System.nanoTime() % 100);
