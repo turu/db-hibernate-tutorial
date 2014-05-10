@@ -1,7 +1,7 @@
 package pl.agh.turek.bazy.hibernate.runners;
 
-import org.hibernate.SessionFactory;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
@@ -14,20 +14,18 @@ import pl.agh.turek.bazy.hibernate.repository.OrdersDao;
 import pl.agh.turek.bazy.hibernate.util.OrdersEntityFactory;
 import pl.agh.turek.bazy.hibernate.util.RandomObjectFetcher;
 
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-
 @Component
 public class PropagationLevelsRunner {
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SpringConfigRunner.class);
-    private final ExecutorService executor = Executors.newSingleThreadExecutor();
 
-    public static void main(String[] args) throws InterruptedException {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
-        SessionFactory sessionFactory = (SessionFactory) ctx.getBean("sessionFactory");
-        sessionFactory.openSession();//todo is really needed?
-        ((PropagationLevelsRunner) ctx.getBean("propagationLevelsRunner")).run();
-    }
+    @Autowired
+    private OrderDetailsDao orderDetailsDao;
+
+    @Autowired
+    private OrdersDao ordersDao;
+
+    @Autowired
+    private OrdersEntityFactory ordersEntityFactory;
 
     private void run() throws InterruptedException {
         addNewOrder();
@@ -35,10 +33,6 @@ public class PropagationLevelsRunner {
 
     @Transactional
     public void addNewOrder() throws InterruptedException {
-        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
-        final OrdersDao ordersDao = (OrdersDao) ctx.getBean("ordersDao");
-        final OrderDetailsDao orderDetailsDao = (OrderDetailsDao) ctx.getBean("orderDetailsDao");
-        OrdersEntityFactory ordersEntityFactory = (OrdersEntityFactory) ctx.getBean("ordersEntityFactory");
 
         printTotalValueStatistic(orderDetailsDao, ordersDao);//before
         OrdersEntity randomOrder = ordersEntityFactory.createRandomOrder();
@@ -66,6 +60,11 @@ public class PropagationLevelsRunner {
         detailsEntity.setDiscount(.05);
         detailsEntity.setQuantity(1000000);
         detailsEntity.setUnitprice(5600000.);
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
+        ((PropagationLevelsRunner) ctx.getBean("propagationLevelsRunner")).run();
     }
 
 
