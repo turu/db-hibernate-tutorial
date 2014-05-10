@@ -4,13 +4,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Component;
-import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.agh.turek.bazy.hibernate.model.OrderDetailsEntity;
 import pl.agh.turek.bazy.hibernate.model.OrdersEntity;
 import pl.agh.turek.bazy.hibernate.model.ProductsEntity;
 import pl.agh.turek.bazy.hibernate.repository.OrderDetailsDao;
 import pl.agh.turek.bazy.hibernate.repository.OrdersDao;
+import pl.agh.turek.bazy.hibernate.service.OrdersValueService;
 import pl.agh.turek.bazy.hibernate.util.OrdersEntityFactory;
 import pl.agh.turek.bazy.hibernate.util.RandomObjectFetcher;
 
@@ -27,31 +27,24 @@ public class PropagationLevelsRunner {
     @Autowired
     private OrdersEntityFactory ordersEntityFactory;
 
+    @Autowired
+    private OrdersValueService ordersValueService;
+
     private void run() throws InterruptedException {
         addNewOrder();
     }
 
     @Transactional
     public void addNewOrder() throws InterruptedException {
-
-        printTotalValueStatistic(orderDetailsDao, ordersDao);//before
+        ordersValueService.printTotalValueStatistic(); //before
         OrdersEntity randomOrder = ordersEntityFactory.createRandomOrder();
         ordersDao.create(randomOrder);
-        printTotalValueStatistic(orderDetailsDao, ordersDao);//during
+        ordersValueService.printTotalValueStatistic(); //during
         OrderDetailsEntity detailsEntity = new OrderDetailsEntity();
         detailsEntity.setOrderid(randomOrder.getOrderid());
         setOtherOrderDeatilsFields(orderDetailsDao, detailsEntity);
         orderDetailsDao.create(detailsEntity);
-        printTotalValueStatistic(orderDetailsDao, ordersDao);//after
-    }
-
-    @Transactional(propagation = Propagation.REQUIRES_NEW)
-    public void printTotalValueStatistic(OrderDetailsDao orderDetailsDao, OrdersDao ordersDao) {
-        double total = 0.;
-        for (OrderDetailsEntity detail : orderDetailsDao.getAll()) {
-            total += detail.getQuantity() * detail.getUnitprice();
-        }
-        System.out.println("Total value of " + total + " is in " + ordersDao.getAll().size() + " orders");
+        ordersValueService.printTotalValueStatistic(); //after
     }
 
     private void setOtherOrderDeatilsFields(OrderDetailsDao orderDetailsDao, OrderDetailsEntity detailsEntity) {
