@@ -23,7 +23,7 @@ public class LazyInitHellRunner {
     }
 
     private void run() {
-        final ProductsEntity product = lazyInitHellService.extractProduct();
+        final ProductsEntity product = lazyInitHellService.extractProductWithOrderDetails();
         displayOrderDetails(product);
     }
 
