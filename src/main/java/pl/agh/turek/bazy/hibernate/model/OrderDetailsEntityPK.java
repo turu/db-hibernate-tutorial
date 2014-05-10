@@ -50,4 +50,12 @@ public class OrderDetailsEntityPK implements Serializable {
         result = 31 * result + (int) (productid ^ (productid >>> 32));
         return result;
     }
+
+    @Override
+    public String toString() {
+        return "OrderDetailsEntityPK{" +
+                "orderid=" + orderid +
+                ", productid=" + productid +
+                '}';
+    }
 }

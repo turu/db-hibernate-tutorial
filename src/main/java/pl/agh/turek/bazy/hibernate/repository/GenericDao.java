@@ -60,7 +60,7 @@ public class GenericDao<T, PK extends Serializable> implements Dao<T, PK> {
     public void update(T o) {
         Session session = getSession();
         session.update(o);
-        session.flush();
+//        session.flush();
     }
 
     public void delete(T o) {
