@@ -31,7 +31,7 @@ public class CascadeTypeService {
         final double discount = firstOrderDetail.getDiscount();
         System.out.println("Will try to fetch order detail id:" + pk + " with discount "
                 + discount);
-        firstOrderDetail.setDiscount(discount / 2);
+        firstOrderDetail.setDiscount(discount + 0.1);
         System.out.println("New discount set to: " + firstOrderDetail.getDiscount());
         productsDao.update(product);
         return pk;

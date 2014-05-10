@@ -165,7 +165,7 @@ public class ProductsEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "productsByProductid", fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "productsByProductid", fetch = FetchType.LAZY/*, cascade = CascadeType.ALL*/)
     public Collection<OrderDetailsEntity> getOrderDetailsesByProductid() {
         return orderDetailsesByProductid;
     }
