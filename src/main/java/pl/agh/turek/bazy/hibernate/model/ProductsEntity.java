@@ -160,7 +160,7 @@ public class ProductsEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "productsByProductid")
+    @OneToMany(mappedBy = "productsByProductid", fetch = FetchType.LAZY)
     public Collection<OrderDetailsEntity> getOrderDetailsesByProductid() {
         return orderDetailsesByProductid;
     }

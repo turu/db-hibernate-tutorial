@@ -30,10 +30,6 @@ public class PropagationLevelsRunner {
     @Autowired
     private OrdersValueService ordersValueService;
 
-    private void run() throws InterruptedException {
-        addNewOrder();
-    }
-
     @Transactional
     public void addNewOrder() throws InterruptedException {
         ordersValueService.printTotalValueStatistic(); //before
@@ -57,7 +53,7 @@ public class PropagationLevelsRunner {
     public static void main(String[] args) throws InterruptedException {
         ClassPathXmlApplicationContext ctx = new ClassPathXmlApplicationContext("META-INF/applicationContext.xml");
         ((OrdersValueService)ctx.getBean("ordersValueService")).printTotalValueStatistic(); //before
-        ((PropagationLevelsRunner) ctx.getBean("propagationLevelsRunner")).run();
+        ((PropagationLevelsRunner) ctx.getBean("propagationLevelsRunner")).addNewOrder();
         ((OrdersValueService)ctx.getBean("ordersValueService")).printTotalValueStatistic(); //after
     }
 
