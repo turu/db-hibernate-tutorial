@@ -11,7 +11,7 @@ import java.util.Collection;
  */
 @Entity
 @Cacheable
-@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 @Table(name = "products", schema = "public", catalog = "northwind")
 public class ProductsEntity {
     private long productid;
