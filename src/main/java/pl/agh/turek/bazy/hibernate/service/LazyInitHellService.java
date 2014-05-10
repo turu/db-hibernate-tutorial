@@ -18,4 +18,12 @@ public class LazyInitHellService {
     public ProductsEntity extractProduct() {
         return productsDao.getAll().get(0);
     }
+
+    @Transactional
+    public ProductsEntity extractProductWithOrderDetails() {
+        final ProductsEntity product = extractProduct();
+        System.out.println("... Product lazy proxy retrieved ...");
+        product.getOrderDetailsesByProductid().size();
+        return product;
+    }
 }
