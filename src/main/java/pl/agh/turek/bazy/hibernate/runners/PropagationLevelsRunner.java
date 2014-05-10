@@ -3,6 +3,7 @@ package pl.agh.turek.bazy.hibernate.runners;
 import org.hibernate.SessionFactory;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import pl.agh.turek.bazy.hibernate.model.OrderDetailsEntity;
@@ -16,6 +17,7 @@ import pl.agh.turek.bazy.hibernate.util.RandomObjectFetcher;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
+@Component
 public class PropagationLevelsRunner {
     private static final org.slf4j.Logger LOG = LoggerFactory.getLogger(SpringConfigRunner.class);
     private final ExecutorService executor = Executors.newSingleThreadExecutor();
@@ -48,7 +50,7 @@ public class PropagationLevelsRunner {
         orderDetailsDao.create(detailsEntity);
         printTotalValueStatistic(orderDetailsDao, ordersDao);//after
     }
-    @Transactional(propagation = Propagation.NESTED)
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
     public void printTotalValueStatistic(OrderDetailsDao orderDetailsDao, OrdersDao ordersDao) {
         double total = 0.;
         for (OrderDetailsEntity detail : orderDetailsDao.getAll()) {
