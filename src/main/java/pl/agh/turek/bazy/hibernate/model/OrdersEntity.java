@@ -215,7 +215,7 @@ public class OrdersEntity {
         return result;
     }
 
-    @OneToMany(mappedBy = "ordersByOrderid")
+    @OneToMany(mappedBy = "ordersByOrderid", fetch = FetchType.EAGER)
     public Collection<OrderDetailsEntity> getOrderDetailsesByOrderid() {
         return orderDetailsesByOrderid;
     }

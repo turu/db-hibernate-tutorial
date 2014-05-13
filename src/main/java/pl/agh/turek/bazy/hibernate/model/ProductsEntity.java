@@ -29,6 +29,7 @@ public class ProductsEntity {
     private SuppliersEntity suppliersBySupplierid;
 
     @Id
+    @GeneratedValue
     @Column(name = "productid", nullable = false, insertable = true, updatable = true)
     public long getProductid() {
         return productid;
