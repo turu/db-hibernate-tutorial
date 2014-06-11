@@ -1,5 +1,7 @@
 package pl.agh.turek.bazy.hibernate.model;
 
+import org.hibernate.annotations.CacheConcurrencyStrategy;
+
 import javax.persistence.*;
 
 /**
@@ -8,6 +10,8 @@ import javax.persistence.*;
 @Entity
 @Table(name = "order_details", schema = "public", catalog = "northwind")
 @IdClass(OrderDetailsEntityPK.class)
+@Cacheable
+@org.hibernate.annotations.Cache(usage = CacheConcurrencyStrategy.READ_WRITE)
 public class OrderDetailsEntity {
     private long orderid;
     private long productid;

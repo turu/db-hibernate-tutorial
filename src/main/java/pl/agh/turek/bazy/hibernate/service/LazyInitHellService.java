@@ -6,6 +6,10 @@ import org.springframework.transaction.annotation.Transactional;
 import pl.agh.turek.bazy.hibernate.model.ProductsEntity;
 import pl.agh.turek.bazy.hibernate.repository.ProductsDao;
 
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+
 /**
  * Author: Piotr Turek
  */
@@ -16,7 +20,14 @@ public class LazyInitHellService {
 
     @Transactional
     public ProductsEntity extractProduct() {
-        return productsDao.getAll().get(0);
+        final List<ProductsEntity> all = productsDao.getAll();
+        Collections.sort(all, new Comparator<ProductsEntity>() {
+            @Override
+            public int compare(ProductsEntity o1, ProductsEntity o2) {
+                return (int) (o1.getProductid() - o2.getProductid());
+            }
+        });
+        return all.get(0);
     }
 
     @Transactional
